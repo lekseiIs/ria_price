@@ -31,7 +31,7 @@
     </label>
     <div class="race-inputs">
       <label for="#">Пробіг (тис. км)
-        <input v-model="raceFrom" type="text" placeholder="Від">
+        <input v-model="raceFrom"   type="text" placeholder="Від">
         <input v-model="raceTo" type="text" placeholder="До">
       </label>
     </div>
@@ -49,7 +49,7 @@ export default {
       models: [],
       model: '',
       year: '',
-      raceFrom: '',
+      raceFrom: ' ',
       raceTo: '',
     };
   },
@@ -84,6 +84,12 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+
+    // Потрібно реалізувати якось фільтер для полів, де можуть бути тільки цифри
+    numFilter(value) {
+      if (!value) return '';
+      return value.replace(/[^\d]/g);
     },
     fetchResult() {
       console.log(`https://developers.ria.com/auto/average_price?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&marka_id=${this.marka}&model_id=${this.model}&yers=${this.year}&damage=0`);
