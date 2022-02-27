@@ -53,6 +53,7 @@ export default {
       raceTo: '',
     };
   },
+  // test
   mounted() {
     fetch(
       'http://api.auto.ria.com/categories/1/marks?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu',
