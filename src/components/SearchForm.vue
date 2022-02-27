@@ -55,7 +55,7 @@ export default {
   },
   mounted() {
     fetch(
-      `http://api.auto.ria.com/categories/1/marks?api_key=${process.env.VUE_APP_API_KEY}`,
+      'http://api.auto.ria.com/categories/1/marks?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu',
     )
       .then((data) => {
         const results = data.json();
@@ -71,7 +71,7 @@ export default {
   methods: {
     fetchModels() {
       fetch(
-        `http://api.auto.ria.com/categories/1/marks/${this.marka}/models?api_key=${process.env.VUE_APP_API_KEY}`,
+        `http://api.auto.ria.com/categories/1/marks/${this.marka}/models?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu`,
       )
         .then((data) => {
           const results = data.json();
