@@ -1,16 +1,19 @@
 <template>
   <form action="#" class="search-form" @submit.prevent="fetchResult">
-    <label for="select-type">Транспорт
-      <select name="select-type" id="select-type">
+    <label for="select-type"
+      >Транспорт
+      <select name="select-type" id="select-type" required>
         <option value="1">Легкові</option>
       </select>
     </label>
-    <label for="select-marka">Марка
+    <label for="select-marka"
+      >Марка
       <select
         v-model="marka"
         @change="fetchModels"
         name="select-marka"
         id="select-marka"
+        required
       >
         <option disabled value="" selected>Оберіть</option>
         <option v-for="marka in marks" :key="marka.value" :value="marka.value">
@@ -18,21 +21,38 @@
         </option>
       </select>
     </label>
-    <label for="select-model">Модель
-      <select name="select-model" id="select-model">
+    <label for="select-model"
+      >Модель
+      <select name="select-model" id="select-model" v-model="model" required>
         <option disabled value="" selected>Оберіть</option>
         <option v-for="model in models" :key="model.value" :value="model.value">
           {{ model.name }}
         </option>
       </select>
     </label>
-    <label for="input-year">Рік
-      <input v-model="year" type="text" name="input-year" id="input-year" placeholder="">
+    <label for="input-year"
+      >Рік
+      <input
+        v-model="year"
+        type="number"
+        :max="new Date().getFullYear()"
+        name="input-year"
+        id="input-year"
+        required
+        autocomplete="false"
+      />
     </label>
     <div class="race-inputs">
-      <label for="#">Пробіг (тис. км)
-        <input v-model="raceFrom"   type="text" placeholder="Від">
-        <input v-model="raceTo" type="text" placeholder="До">
+      <label for="#"
+        >Пробіг (тис. км)
+        <input
+          v-model="raceFrom"
+          :max="raceTo"
+          type="number"
+          placeholder="Від"
+          required
+        />
+        <input v-model="raceTo" max="999" type="number" placeholder="До" />
       </label>
     </div>
     <button>Пошук</button>
@@ -53,7 +73,6 @@ export default {
       raceTo: '',
     };
   },
-  // test
   mounted() {
     fetch(
       'http://api.auto.ria.com/categories/1/marks?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu',
@@ -85,14 +104,15 @@ export default {
           console.log(error);
         });
     },
-
-    // Потрібно реалізувати якось фільтер для полів, де можуть бути тільки цифри
-    numFilter(value) {
-      if (!value) return '';
-      return value.replace(/[^\d]/g);
-    },
     fetchResult() {
-      console.log(`https://developers.ria.com/auto/average_price?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&marka_id=${this.marka}&model_id=${this.model}&yers=${this.year}&damage=0`);
+      fetch(`https://developers.ria.com/auto/average_price?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&marka_id=${this.marka}&model_id=${this.model}&yers=${this.year}&damage=0`)
+        .then((data) => {
+          const result = data.json();
+          return result;
+        })
+        .then((data) => {
+          this.$emit('renderResult', data);
+        });
     },
   },
 };
@@ -103,7 +123,17 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 1px;
-  text-overflow: '';
+  text-overflow: "";
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 .search-form {
 
