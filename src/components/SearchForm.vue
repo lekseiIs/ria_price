@@ -97,12 +97,17 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 select {
   background: url(/public/select-arrow.png) 100% 50% no-repeat;
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 1px;
   text-overflow: '';
+}
+.search-form {
+
+  display: block;
+  margin: 0 auto;
 }
 </style>
