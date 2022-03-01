@@ -178,8 +178,8 @@ export default {
     modelsAction() {
       this.fetchModels(this.marka);
     },
-    testing() {
-      console.log(this.$data);
+    fetchResult() {
+      console.log('1');
     },
   },
   computed: {
