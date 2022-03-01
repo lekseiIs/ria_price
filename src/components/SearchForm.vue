@@ -6,17 +6,35 @@
         <option value="1">Легкові</option>
       </select>
     </label>
+    <label for="select-body"
+      >Тип кузова
+      <select name="select-body" id="select-body">
+        <option disabled value="" selected>Оберіть</option>
+        <option
+          v-for="bodyStyle in getBodyStyles"
+          :key="bodyStyle.value"
+          :value="bodyStyle.value"
+        >
+          {{ bodyStyle.name }}
+        </option>
+      </select>
+    </label>
+
     <label for="select-marka"
       >Марка
       <select
+        @change="modelsAction"
         v-model="marka"
-        @change="fetchModels"
         name="select-marka"
         id="select-marka"
         required
       >
         <option disabled value="" selected>Оберіть</option>
-        <option v-for="marka in marks" :key="marka.value" :value="marka.value">
+        <option
+          v-for="marka in getMarks"
+          :key="marka.value"
+          :value="marka.value"
+        >
           {{ marka.name }}
         </option>
       </select>
@@ -25,7 +43,11 @@
       >Модель
       <select name="select-model" id="select-model" v-model="model" required>
         <option disabled value="" selected>Оберіть</option>
-        <option v-for="model in models" :key="model.value" :value="model.value">
+        <option
+          v-for="model in getModels"
+          :key="model.value"
+          :value="model.value"
+        >
           {{ model.name }}
         </option>
       </select>
@@ -39,7 +61,7 @@
         name="input-year"
         id="input-year"
         required
-        autocomplete="false"
+        autocomplete="off"
       />
     </label>
     <div class="race-inputs">
@@ -47,6 +69,7 @@
         >Пробіг (тис. км)
         <input
           v-model="raceFrom"
+          min="5"
           :max="raceTo"
           type="number"
           placeholder="Від"
@@ -55,11 +78,28 @@
         <input v-model="raceTo" max="999" type="number" placeholder="До" />
       </label>
     </div>
+    <div class="additionally">
+      <label for="select-region"
+        >Область
+        <select name="select-region" id="select-region" v-model="region">
+          <option disabled value="" selected>Оберіть</option>
+          <option
+            v-for="region in getRegions"
+            :key="region.value"
+            :value="region.value"
+          >
+            {{region.name}}
+          </option>
+        </select>
+      </label>
+    </div>
     <button>Пошук</button>
   </form>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'SearchForm',
   data() {
@@ -69,51 +109,40 @@ export default {
       models: [],
       model: '',
       year: '',
-      raceFrom: ' ',
+      raceFrom: '',
       raceTo: '',
+      region: '',
+      damage: 0,
+      custom: 0,
     };
   },
-  mounted() {
-    fetch(
-      'http://api.auto.ria.com/categories/1/marks?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu',
-    )
-      .then((data) => {
-        const results = data.json();
-        return results;
-      })
-      .then((data) => {
-        this.marks = data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  created() {
+    this.fetchBodyStyles();
+    this.fetchRegions();
+    this.fetchMarks();
+    this.marks = this.getMarks;
   },
   methods: {
-    fetchModels() {
-      fetch(
-        `http://api.auto.ria.com/categories/1/marks/${this.marka}/models?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu`,
-      )
-        .then((data) => {
-          const results = data.json();
-          return results;
-        })
-        .then((data) => {
-          this.models = data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    ...mapActions({
+      fetchMarks: 'fetchMarks',
+      fetchModels: 'fetchModels',
+      fetchBodyStyles: 'fetchBodyStyles',
+      fetchRegions: 'fetchRegions',
+    }),
+    modelsAction() {
+      this.fetchModels(this.marka);
     },
-    fetchResult() {
-      fetch(`https://developers.ria.com/auto/average_price?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&marka_id=${this.marka}&model_id=${this.model}&yers=${this.year}&damage=0`)
-        .then((data) => {
-          const result = data.json();
-          return result;
-        })
-        .then((data) => {
-          this.$emit('renderResult', data);
-        });
+    testing() {
+      console.log(this.$data);
     },
+  },
+  computed: {
+    ...mapGetters({
+      getMarks: 'getMarks',
+      getModels: 'getModels',
+      getBodyStyles: 'getBodyStyles',
+      getRegions: 'getRegions',
+    }),
   },
 };
 </script>
@@ -136,8 +165,13 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 .search-form {
-
-  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
   margin: 0 auto;
+}
+.search-form input,
+select {
+  width: 100%;
 }
 </style>
