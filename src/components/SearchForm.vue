@@ -75,7 +75,7 @@
           placeholder="Від"
           required
         />
-        <input v-model="raceTo" max="999" type="number" placeholder="До" />
+        <input v-model="raceTo" max="999" type="number" placeholder="До" required/>
       </label>
     </div>
     <button @click="openAdditional" v-if="!addIsOpen">Розширений пошук</button>
