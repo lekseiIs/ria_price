@@ -14,6 +14,8 @@ export default new Vuex.Store({
     raceFrom: '',
     raceTo: '',
     regions: [],
+    gearboxes: [],
+    fuelTypes: [],
   },
   getters: {
     getMarks(state) {
@@ -28,6 +30,12 @@ export default new Vuex.Store({
     getRegions(state) {
       return state.regions;
     },
+    getGeaboxes(state) {
+      return state.gearboxes;
+    },
+    getFuelTypes(state) {
+      return state.fuelTypes;
+    },
   },
   mutations: {
     setMarks(state, payload) {
@@ -41,6 +49,12 @@ export default new Vuex.Store({
     },
     setRegions(state, payload) {
       Vue.set(state, 'regions', payload);
+    },
+    setGearboxes(state, payload) {
+      Vue.set(state, 'gearboxes', payload);
+    },
+    setFuelTypes(state, payload) {
+      Vue.set(state, 'fuelTypes', payload);
     },
   },
   actions: {
@@ -92,6 +106,32 @@ export default new Vuex.Store({
         })
         .then((regions) => {
           ctx.commit('setRegions', regions);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    fetchGearboxes(ctx) {
+      fetch('https://developers.ria.com/auto/categories/1/gearboxes?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu')
+        .then((data) => {
+          const gearboxes = data.json();
+          return gearboxes;
+        })
+        .then((gearboxes) => {
+          ctx.commit('setGearboxes', gearboxes);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    fetchFuelTypes(ctx) {
+      fetch('https://developers.ria.com/auto/type?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu')
+        .then((data) => {
+          const fuelTypes = data.json();
+          return fuelTypes;
+        })
+        .then((fuelTypes) => {
+          ctx.commit('setFuelTypes', fuelTypes);
         })
         .catch((error) => {
           console.log(error);

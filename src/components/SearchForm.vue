@@ -78,9 +78,10 @@
         <input v-model="raceTo" max="999" type="number" placeholder="До" />
       </label>
     </div>
-    <div class="additionally">
+    <button @click="openAdditional" v-if="!addIsOpen">Розширений пошук</button>
+    <div class="additionally" v-if="addIsOpen">
       <label for="select-region"
-        >Область
+        >Регіон
         <select name="select-region" id="select-region" v-model="region">
           <option disabled value="" selected>Оберіть</option>
           <option
@@ -89,6 +90,42 @@
             :value="region.value"
           >
             {{region.name}}
+          </option>
+        </select>
+      </label>
+      <label for="select-damage">ДТП
+        <select name="select-damage" id="select-damage" v-model="damage">
+          <option value="0">Не було</option>
+          <option value="1">Було</option>
+        </select>
+      </label>
+      <label for="select-custom">Розмитнена
+        <select name="select-custom" id="select-custom">
+          <option value="0">Розмитнена</option>
+          <option value="1">Нерозмитнена</option>
+        </select>
+      </label>
+      <label for="select-gearbox">КПП
+        <select name="select-gearbox" id="select-gearbox" v-model="gearbox">
+          <option disabled value="" selected>Оберіть</option>
+          <option
+            v-for="gearbox in getGeaboxes"
+            :key="gearbox.value"
+            :value="gearbox.value"
+          >
+            {{gearbox.name}}
+          </option>
+        </select>
+      </label>
+      <label for="select-fuel">Паливо
+        <select name="select-fuel" id="select-fuel" v-model="fuelType">
+          <option disabled selected>Оберіть</option>
+          <option
+            v-for="fuelType in getFuelTypes"
+            :key="fuelType.value"
+            :value="fuelType.value"
+          >
+            {{fuelType.name}}
           </option>
         </select>
       </label>
@@ -113,12 +150,17 @@ export default {
       region: '',
       damage: 0,
       custom: 0,
+      gearbox: 0,
+      fuelType: 0,
+      addIsOpen: false,
     };
   },
   created() {
     this.fetchBodyStyles();
     this.fetchRegions();
     this.fetchMarks();
+    this.fetchGearboxes();
+    this.fetchFuelTypes();
     this.marks = this.getMarks;
   },
   methods: {
@@ -127,7 +169,12 @@ export default {
       fetchModels: 'fetchModels',
       fetchBodyStyles: 'fetchBodyStyles',
       fetchRegions: 'fetchRegions',
+      fetchGearboxes: 'fetchGearboxes',
+      fetchFuelTypes: 'fetchFuelTypes',
     }),
+    openAdditional() {
+      this.addIsOpen = true;
+    },
     modelsAction() {
       this.fetchModels(this.marka);
     },
@@ -141,6 +188,8 @@ export default {
       getModels: 'getModels',
       getBodyStyles: 'getBodyStyles',
       getRegions: 'getRegions',
+      getGeaboxes: 'getGeaboxes',
+      getFuelTypes: 'getFuelTypes',
     }),
   },
 };
