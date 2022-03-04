@@ -3,8 +3,7 @@
     <footer class="footer">
       <div class="container">
         <div class="footer__inner">
-          <img class="logo" src="../assets/logo.svg" alt="">
-          <span class="copy">© 2014-2022 RIA.com</span>
+          <span class="footer__copy">© 2014-2022 RIA.com</span>
         </div>
       </div>
     </footer>
@@ -20,13 +19,15 @@ export default {
 <style scoped lang="scss">
 .footer {
   &__inner{
-    display: flex;
+    text-align: center;
+    height: 31px;
     align-items: center;
-    height: 51px;
+  }
+  &__copy{
+    font-size: 13px;
+    font-weight: 500;
+    color: #023b56;
   }
 
-  .logo {
-    margin-right: 30px;
-  }
 }
 </style>
