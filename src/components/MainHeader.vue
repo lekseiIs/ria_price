@@ -5,12 +5,11 @@
         <div class="header__inner">
           <div class="header__top">
             <img class="logo" src="../assets/logo.svg" alt="logo">
-            <button class="header__button">Продати авто</button>
           </div>
           <div class="header__bottom">
-          <span class="header__message">
-            «Ну трошки крашена». Перевірено людьми
-          </span>
+            <span class="header__message">
+                Слава Україні! Окупанти – геть!
+            </span>
           </div>
         </div>
       </div>
@@ -25,10 +24,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .header {
-  border-bottom: 1px solid transparent;
-  margin-bottom: 30px;
+  width: 100%;
+
   &__inner {
+    padding-top: 7px;
+    padding-left: 11px;
     display: flex;
     flex-direction: column;
   }
@@ -36,27 +38,45 @@ export default {
   &__top {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
-  }
-
-  &__button {
-    font-size: 18px;
-    line-height: 40px;
-    padding: 0 15px;
-    background: #79be00;
-    box-sizing: border-box;
-    min-width: 220px;
-    height: 48px;
-    border-radius: 5px;
-    border: none;
-    color: #fff;
+    margin-bottom: 7px;
   }
 
   &__message {
     color: #256799;
-    font-size: 18px;
-    display: block;
+    font-size: 16px;
   }
-
 }
+
+@media (min-width: 600px) and (max-width: 1400px) {
+  .header{
+    &__inner{
+      justify-content: center;
+      align-items: center;
+    }
+    &__message{
+      font-size: 22px;
+    }
+  }
+  .logo {
+    width: 200px;
+  }
+}
+@media screen and  (min-width: 1400px) {
+  .container {
+    width: 848px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 auto;
+  }
+  .header{
+    margin-bottom: 30px;
+    &__message{
+      font-size: 22px;
+    }
+  }
+  .logo {
+    width: 272px;
+  }
+}
+
 </style>
