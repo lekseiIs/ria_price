@@ -4,6 +4,7 @@
   <main>
 
     <SearchForm/>
+    <SearchResult/>
   </main>
   <MainFooter/>
   </body>
@@ -13,6 +14,7 @@
 import SearchForm from '@/components/SearchForm.vue';
 import MainHeader from '@/components/MainHeader.vue';
 import MainFooter from '@/components/MainFooter.vue';
+import SearchResult from '@/components/SearchResult.vue';
 
 export default {
   name: 'App',
@@ -20,6 +22,7 @@ export default {
     MainHeader,
     SearchForm,
     MainFooter,
+    SearchResult,
   },
 };
 </script>
