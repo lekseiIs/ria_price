@@ -108,7 +108,7 @@
         <select class="form__caption" name="select-gearbox" id="select-gearbox" v-model="gearbox">
           <option disabled value="0" selected>КПП</option>
           <option
-            v-for="gearbox in getGeaboxes"
+            v-for="gearbox in getGearboxes"
             :key="gearbox.value"
             :value="gearbox.value"
           >
@@ -152,10 +152,10 @@ export default {
       raceFrom: '',
       raceTo: '',
       region: '',
-      damage: 0,
-      custom: 0,
-      gearbox: 0,
-      fuelType: 0,
+      damage: '',
+      custom: '',
+      gearbox: '',
+      fuelType: '',
       addIsOpen: false,
     };
   },
@@ -192,7 +192,7 @@ export default {
       getModels: 'getModels',
       getBodyStyles: 'getBodyStyles',
       getRegions: 'getRegions',
-      getGeaboxes: 'getGeaboxes',
+      getGearboxes: 'getGearboxes',
       getFuelTypes: 'getFuelTypes',
     }),
   },

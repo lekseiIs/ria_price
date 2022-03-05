@@ -39,11 +39,13 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-bottom: 7px;
+    user-select: none;
   }
 
   &__message {
     color: #256799;
     font-size: 16px;
+    user-select: none;
   }
 }
 
