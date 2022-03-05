@@ -1,10 +1,11 @@
 <template>
   <body id="app">
-    <MainHeader/>
-    <main>
-      <SearchForm/>
-    </main>
-    <MainFooter/>
+  <MainHeader/>
+  <main>
+
+    <SearchForm/>
+  </main>
+  <MainFooter/>
   </body>
 </template>
 
@@ -24,8 +25,39 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  margin: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 1400px) {
+  main {
+    padding-top: 50px;
+  }
+  .header{
+    &__bottom{
+     display: block;
+      width: 100%;
+    }
+  }
+}
+@media screen and (max-width: 1400px) {
+  main {
+    padding-top: 30px;
+  }
+}
+@media screen and (max-width: 600px) {
+  main {
+    padding-top: 10px;
+  }
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
@@ -33,19 +65,8 @@ export default {
   flex-direction: column;
   color: #000;
 }
-.container{
-  padding-top: 14px;
-  padding-left: 10px;
-  padding-right: 10px;
-  width: 940px;
-  margin: 0 auto;
-}
-
-.logo {
-  display: inline-block;
-  width: 160px;
-}
-main{
+main {
   flex: 1;
 }
+
 </style>

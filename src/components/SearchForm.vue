@@ -1,15 +1,16 @@
 <template>
-  <form action="#" class="search-form" @submit.prevent="fetchResult">
-    <label for="select-type"
-      >Транспорт
-      <select name="select-type" id="select-type" required>
+  <form action="#" class="form" @submit.prevent="fetchResult">
+    <h3 class="form__title">
+      Авто Вартість
+    </h3>
+    <label for="select-type">
+      <select class="form__caption" name="select-type" id="select-type" required>
         <option value="1">Легкові</option>
       </select>
     </label>
-    <label for="select-body"
-      >Тип кузова
-      <select name="select-body" id="select-body">
-        <option disabled value="" selected>Оберіть</option>
+    <label for="select-body">
+      <select class="form__caption form__caption--width" name="select-body" id="select-body">
+        <option disabled value="" selected>Тип кузова</option>
         <option
           v-for="bodyStyle in getBodyStyles"
           :key="bodyStyle.value"
@@ -19,17 +20,15 @@
         </option>
       </select>
     </label>
-
-    <label for="select-marka"
-      >Марка
-      <select
-        @change="modelsAction"
-        v-model="marka"
-        name="select-marka"
-        id="select-marka"
-        required
+    <label for="select-marka">
+      <select class="form__caption"
+              @change="modelsAction"
+              v-model="marka"
+              name="select-marka"
+              id="select-marka"
+              required
       >
-        <option disabled value="" selected>Оберіть</option>
+        <option disabled value="" selected>Марка</option>
         <option
           v-for="marka in getMarks"
           :key="marka.value"
@@ -39,10 +38,10 @@
         </option>
       </select>
     </label>
-    <label for="select-model"
-      >Модель
-      <select name="select-model" id="select-model" v-model="model" required>
-        <option disabled value="" selected>Оберіть</option>
+    <label for="select-model">
+      <select class="form__caption form__caption--width" name="select-model" id="select-model"
+              v-model="model" required>
+        <option disabled value="" selected>Модель</option>
         <option
           v-for="model in getModels"
           :key="model.value"
@@ -52,85 +51,90 @@
         </option>
       </select>
     </label>
-    <label for="input-year"
-      >Рік
-      <input
-        v-model="year"
-        type="number"
-        :max="new Date().getFullYear()"
-        name="input-year"
-        id="input-year"
-        required
-        autocomplete="off"
+    <label for="input-year">
+      <input class="form__caption form__caption--width"
+             v-model="year"
+             type="number"
+             :max="new Date().getFullYear()"
+             name="input-year"
+             id="input-year"
+             required
+             autocomplete="off"
+             placeholder="Рік"
       />
     </label>
     <div class="race-inputs">
-      <label for="#"
-        >Пробіг (тис. км)
-        <input
-          v-model="raceFrom"
-          min="5"
-          :max="raceTo"
-          type="number"
-          placeholder="Від"
-          required
+      <label for="#" class="form__inner">
+        <input class="form__caption form__text"
+               v-model="raceFrom"
+               min="5"
+               :max="raceTo"
+               type="number"
+               placeholder="Пробіг від"
+               required
         />
-        <input v-model="raceTo" max="999" type="number" placeholder="До" required/>
+        <input class="form__caption form__text" v-model="raceTo" max="999" type="number"
+               placeholder="Пробіг до" required/>
       </label>
     </div>
-    <button @click="openAdditional" v-if="!addIsOpen">Розширений пошук</button>
     <div class="additionally" v-if="addIsOpen">
-      <label for="select-region"
-        >Регіон
-        <select name="select-region" id="select-region" v-model="region">
-          <option disabled value="" selected>Оберіть</option>
+      <label for="select-region">
+        <select class="form__caption" name="select-region" id="select-region" v-model="region">
+          <option disabled value="" selected>Регіон</option>
           <option
             v-for="region in getRegions"
             :key="region.value"
             :value="region.value"
           >
-            {{region.name}}
+            {{ region.name }}
           </option>
         </select>
       </label>
-      <label for="select-damage">ДТП
-        <select name="select-damage" id="select-damage" v-model="damage">
-          <option value="0">Не було</option>
-          <option value="1">Було</option>
+      <label for="select-damage">
+        <select class="form__caption form__text form__text--right" name="select-damage"
+                id="select-damage" v-model="damage">
+          <option disabled value="0" selected>ДТП</option>
+          <option value="1">Не було</option>
+          <option value="2">Було</option>
         </select>
       </label>
-      <label for="select-custom">Розмитнена
-        <select name="select-custom" id="select-custom">
+      <label for="select-custom">
+        <select class="form__caption form__text" name="select-custom" id="select-custom">
           <option value="0">Розмитнена</option>
           <option value="1">Нерозмитнена</option>
         </select>
       </label>
-      <label for="select-gearbox">КПП
-        <select name="select-gearbox" id="select-gearbox" v-model="gearbox">
-          <option disabled value="" selected>Оберіть</option>
+      <label for="select-gearbox">
+        <select class="form__caption" name="select-gearbox" id="select-gearbox" v-model="gearbox">
+          <option disabled value="0" selected>КПП</option>
           <option
             v-for="gearbox in getGearboxes"
             :key="gearbox.value"
             :value="gearbox.value"
           >
-            {{gearbox.name}}
+            {{ gearbox.name }}
           </option>
         </select>
       </label>
-      <label for="select-fuel">Паливо
-        <select name="select-fuel" id="select-fuel" v-model="fuelType">
-          <option disabled value='' selected>Оберіть</option>
+      <label for="select-fuel">
+        <select class="form__caption" name="select-fuel" id="select-fuel" v-model="fuelType">
+          <option disabled value="0" selected>Паливо</option>
           <option
             v-for="fuelType in getFuelTypes"
             :key="fuelType.value"
             :value="fuelType.value"
           >
-            {{fuelType.name}}
+            {{ fuelType.name }}
           </option>
         </select>
       </label>
     </div>
-    <button>Пошук</button>
+    <div class="btn">
+      <button class="form__btn form__btn--transparent" @click="openAdditional" v-if="!addIsOpen">
+        Розширений пошук
+      </button>
+      <button class="form__btn form__btn--blue">Пошук</button>
+    </div>
   </form>
 </template>
 <script>
@@ -196,30 +200,118 @@ export default {
 </script>
 <style scoped lang="scss">
 select {
-  background: url(/public/select-arrow.png) 100% 50% no-repeat;
+  background: url(../../public/arrow.png) 95% 50% no-repeat;
   -webkit-appearance: none;
   -moz-appearance: none;
-  text-indent: 1px;
+  text-indent: 13px;
   text-overflow: "";
+  cursor: pointer;
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0;
+}
+
+input {
+  outline: inherit;
+  border: none;
+}
+
+input,
+input::placeholder {
+  padding: 13px;
 }
 
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
 }
-.search-form {
+
+button {
+  background-color: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.form {
   display: flex;
   flex-direction: column;
-  width: 40%;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0 auto 10px;
+  font-size: 13px;
+  padding: 15px;
+  color: #fff;
+  background-color: #db5c4c;
+
+  &__title {
+    display: block;
+    border: 1px solid #fff;
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    border-radius: 3px;
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  &__caption {
+    font-size: 13px;
+    padding: 13px 10px;
+    background-color: #fff;
+    color: #777;
+    margin-bottom: 12px;
+    border: 1px solid #777;
+  }
+
+  &__text {
+    width: calc(50% - 7px);
+    display: inline-block;
+    &:not(:last-child) {
+      margin-right: 13px;
+    }
+
+    &--right {
+      margin-right: 13px;
+    }
+  }
+
+  &__btn {
+    width: calc(50% - 7px);
+    padding: 9px 0;
+    color: #fff;
+    border-radius: 3px;
+
+    &:not(:last-child) {
+      margin-right: 13px;
+    }
+
+    &--blue {
+      border: 1px solid transparent;
+      background-color: #219be7;
+    }
+
+    &--transparent {
+      border: 1px solid #fff;
+    }
+  }
 }
-.search-form input,
+
+.form__caption--width,
 select {
   width: 100%;
+}
+
+@media screen and (min-width: 390px) {
+  .form {
+    &__btn {
+      font-size: 17px;
+    }
+    &__caption{
+      font-size: 17px;
+    }
+  }
 }
 </style>
