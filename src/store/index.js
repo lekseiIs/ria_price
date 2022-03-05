@@ -30,7 +30,7 @@ export default new Vuex.Store({
     getRegions(state) {
       return state.regions;
     },
-    getGeaboxes(state) {
+    getGearboxes(state) {
       return state.gearboxes;
     },
     getFuelTypes(state) {
@@ -59,7 +59,7 @@ export default new Vuex.Store({
   },
   actions: {
     fetchMarks(ctx) {
-      fetch('https://api.auto.ria.com/categories/1/marks?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu')
+      fetch('https://api.auto.ria.com/categories/1/marks?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4')
         .then((data) => {
           const marks = data.json();
           return marks;
@@ -73,7 +73,7 @@ export default new Vuex.Store({
     },
     fetchModels(ctx, marka) {
       console.log(ctx);
-      fetch(`https://api.auto.ria.com/categories/1/marks/${marka}/models?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu`)
+      fetch(`https://api.auto.ria.com/categories/1/marks/${marka}/models?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4`)
         .then((data) => {
           const models = data.json();
           return models;
@@ -86,7 +86,7 @@ export default new Vuex.Store({
         });
     },
     fetchBodyStyles(ctx) {
-      fetch('https://developers.ria.com/auto/categories/1/bodystyles?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu')
+      fetch('https://developers.ria.com/auto/categories/1/bodystyles?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4')
         .then((data) => {
           const bodyStyles = data.json();
           return bodyStyles;
@@ -99,7 +99,7 @@ export default new Vuex.Store({
         });
     },
     fetchRegions(ctx) {
-      fetch('https://developers.ria.com/auto/states?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu')
+      fetch('https://developers.ria.com/auto/states?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4')
         .then((data) => {
           const regions = data.json();
           return regions;
@@ -112,7 +112,7 @@ export default new Vuex.Store({
         });
     },
     fetchGearboxes(ctx) {
-      fetch('https://developers.ria.com/auto/categories/1/gearboxes?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu')
+      fetch('https://developers.ria.com/auto/categories/1/gearboxes?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4')
         .then((data) => {
           const gearboxes = data.json();
           return gearboxes;
@@ -125,7 +125,7 @@ export default new Vuex.Store({
         });
     },
     fetchFuelTypes(ctx) {
-      fetch('https://developers.ria.com/auto/type?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu')
+      fetch('https://developers.ria.com/auto/type?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4')
         .then((data) => {
           const fuelTypes = data.json();
           return fuelTypes;
