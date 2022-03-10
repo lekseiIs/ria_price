@@ -1,128 +1,173 @@
 <template>
-  <form action="#" class="form" @submit.prevent="fetchResult">
-    <h3 class="form__title">
-      Авто Вартість
-    </h3>
+  <form action="https://developers.ria.com/auto/average_price?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu" method="GET" class="form">
+    <h3 class="form__title">Авто Вартість</h3>
     <label for="select-type">
-      <select class="form__caption" name="select-type" id="select-type" required>
+      <select
+        class="form__caption"
+        name="select-type"
+        id="select-type"
+        required
+      >
         <option value="1">Легкові</option>
       </select>
     </label>
     <label for="select-body">
-      <select class="form__caption form__caption--width" name="select-body" id="select-body">
+      <select
+        class="form__caption form__caption--width"
+        name="select-body"
+        id="select-body"
+        v-model="bodyStyle"
+      >
         <option disabled value="" selected>Тип кузова</option>
         <option
           v-for="bodyStyle in getBodyStyles"
           :key="bodyStyle.value"
-          :value="bodyStyle.value"
+          :value="'body_id=' + bodyStyle.value"
         >
           {{ bodyStyle.name }}
         </option>
       </select>
     </label>
     <label for="select-marka">
-      <select class="form__caption"
-              @change="modelsAction"
-              v-model="marka"
-              name="select-marka"
-              id="select-marka"
-              required
+      <select
+        class="form__caption"
+        @change="modelsAction"
+        v-model="marka"
+        name="select-marka"
+        id="select-marka"
+        required
       >
         <option disabled value="" selected>Марка</option>
         <option
           v-for="marka in getMarks"
           :key="marka.value"
-          :value="marka.value"
+          :value="'marka_id=' + marka.value"
         >
           {{ marka.name }}
         </option>
       </select>
     </label>
     <label for="select-model">
-      <select class="form__caption form__caption--width" name="select-model" id="select-model"
-              v-model="model" required>
+      <select
+        class="form__caption form__caption--width"
+        name="select-model"
+        id="select-model"
+        v-model="model"
+        required
+      >
         <option disabled value="" selected>Модель</option>
         <option
           v-for="model in getModels"
           :key="model.value"
-          :value="model.value"
+          :value="'model_id=' + model.value"
         >
           {{ model.name }}
         </option>
       </select>
     </label>
     <label for="input-year">
-      <input class="form__caption form__caption--width"
-             v-model="year"
-             type="number"
-             :max="new Date().getFullYear()"
-             name="input-year"
-             id="input-year"
-             required
-             autocomplete="off"
-             placeholder="Рік"
+      <input
+        class="form__caption form__caption--width"
+        v-model="year"
+        type="number"
+        :max="new Date().getFullYear()"
+        name="input-year"
+        id="input-year"
+        required
+        autocomplete="off"
+        placeholder="Рік"
       />
     </label>
     <div class="race-inputs">
       <label for="#" class="form__inner">
-        <input class="form__caption form__text"
-               v-model="raceFrom"
-               min="5"
-               :max="raceTo"
-               type="number"
-               placeholder="Пробіг від"
-               required
+        <input
+          class="form__caption form__text"
+          v-model="raceFrom"
+          min="5"
+          :max="raceTo"
+          type="number"
+          placeholder="Пробіг від"
+          required
         />
-        <input class="form__caption form__text" v-model="raceTo" max="999" type="number"
-               placeholder="Пробіг до" required/>
+        <input
+          class="form__caption form__text"
+          v-model="raceTo"
+          max="999"
+          type="number"
+          placeholder="Пробіг до"
+          required
+        />
       </label>
     </div>
     <div class="additionally" v-if="addIsOpen">
       <label for="select-region">
-        <select class="form__caption" name="select-region" id="select-region" v-model="region">
+        <select
+          class="form__caption"
+          name="select-region"
+          id="select-region"
+          v-model="region"
+        >
           <option disabled value="" selected>Регіон</option>
           <option
             v-for="region in getRegions"
             :key="region.value"
-            :value="region.value"
+            :value="'state_id=' + region.value"
           >
             {{ region.name }}
           </option>
         </select>
       </label>
       <label for="select-damage">
-        <select class="form__caption form__text form__text--right" name="select-damage"
-                id="select-damage" v-model="damage">
+        <select
+          class="form__caption form__text form__text--right"
+          name="select-damage"
+          id="select-damage"
+          v-model="damage"
+        >
           <option disabled value="0" selected>ДТП</option>
-          <option value="1">Не було</option>
-          <option value="2">Було</option>
+          <option value="damage=0">Не було</option>
+          <option value="damage=1">Було</option>
         </select>
       </label>
       <label for="select-custom">
-        <select class="form__caption form__text" name="select-custom" id="select-custom">
-          <option value="0">Розмитнена</option>
-          <option value="1">Нерозмитнена</option>
+        <select
+          class="form__caption form__text"
+          name="select-custom"
+          id="select-custom"
+        >
+          <option value="custom=0">Розмитнена</option>
+          <option value="custom=1">Нерозмитнена</option>
         </select>
       </label>
       <label for="select-gearbox">
-        <select class="form__caption" name="select-gearbox" id="select-gearbox" v-model="gearbox">
+        <select
+          class="form__caption"
+          name="select-gearbox"
+          id="select-gearbox"
+          v-model="gearbox"
+        >
           <option disabled value="0" selected>КПП</option>
           <option
             v-for="gearbox in getGearboxes"
             :key="gearbox.value"
-            :value="gearbox.value"
+            :value="'gear_id=' + gearbox.value"
           >
             {{ gearbox.name }}
           </option>
         </select>
       </label>
       <label for="select-fuel">
-        <select class="form__caption" name="select-fuel" id="select-fuel" v-model="fuelType">
+        <select
+          class="form__caption"
+          name="select-fuel"
+          id="select-fuel"
+          v-model="fuelType"
+        >
           <option disabled value="0" selected>Паливо</option>
           <option
             v-for="fuelType in getFuelTypes"
             :key="fuelType.value"
-            :value="fuelType.value"
+            :value="'fuel_id=' + fuelType.value"
           >
             {{ fuelType.name }}
           </option>
@@ -130,7 +175,11 @@
       </label>
     </div>
     <div class="btn">
-      <button class="form__btn form__btn--transparent" @click="openAdditional" v-if="!addIsOpen">
+      <button
+        class="form__btn form__btn--transparent"
+        @click="openAdditional"
+        v-if="!addIsOpen"
+      >
         Розширений пошук
       </button>
       <button class="form__btn form__btn--blue">Пошук</button>
@@ -144,6 +193,7 @@ export default {
   name: 'SearchForm',
   data() {
     return {
+      bodyStyle: '',
       marks: [],
       marka: '',
       models: [],
@@ -180,7 +230,7 @@ export default {
       this.addIsOpen = true;
     },
     modelsAction() {
-      this.fetchModels(this.marka);
+      this.fetchModels(this.marka.replace(/[^\d]/g, ''));
     },
     fetchResult() {
       console.log('1');
@@ -309,7 +359,7 @@ select {
     &__btn {
       font-size: 17px;
     }
-    &__caption{
+    &__caption {
       font-size: 17px;
     }
   }

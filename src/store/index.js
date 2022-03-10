@@ -72,7 +72,6 @@ export default new Vuex.Store({
         });
     },
     fetchModels(ctx, marka) {
-      console.log(ctx);
       fetch(`https://api.auto.ria.com/categories/1/marks/${marka}/models?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4`)
         .then((data) => {
           const models = data.json();
@@ -136,6 +135,9 @@ export default new Vuex.Store({
         .catch((error) => {
           console.log(error);
         });
+    },
+    setResult() {
+
     },
   },
 });
