@@ -189,6 +189,8 @@
       </button>
       <button class="form__btn form__btn--blue">Пошук</button>
     </div>
+    <div>
+  </div>
   </form>
 </template>
 <script>
@@ -242,7 +244,7 @@ export default {
       this.fetchModels(this.marka);
     },
     submitForm() {
-      const url = `https://developers.ria.com/auto/average_price?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&body_id=${this.bodyStyle}&marka_id=${this.marka}&model_id=${this.model}&yers=${this.year}&raceFrom=${this.raceFrom}&raceTo=${this.raceTo}&`;
+      const url = `https://developers.ria.com/auto/average_price?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&body_id=${this.bodyStyle}&marka_id=${this.marka}&model_id=${this.model}&yers=${this.year}&raceInt=${this.raceFrom}&raceInt=${this.raceTo}&`;
       const params = Object.values(this.$data.additional).filter(
         (e) => typeof e === 'string' && e.length,
       );
@@ -263,6 +265,7 @@ export default {
       getGearboxes: 'getGearboxes',
       getFuelTypes: 'getFuelTypes',
       getAvgResult: 'getAvgResult',
+      getState: 'getState',
     }),
   },
 };
