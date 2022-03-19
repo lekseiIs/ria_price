@@ -265,7 +265,6 @@ export default {
       getGearboxes: 'getGearboxes',
       getFuelTypes: 'getFuelTypes',
       getAvgResult: 'getAvgResult',
-      getState: 'getState',
     }),
   },
 };
