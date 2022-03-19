@@ -251,11 +251,6 @@ export default {
       this.fetchResult(url + params.join('&')).then((data) => console.log(data)).finally(() => this.setIsFetched(true));
     },
   },
-  filters: {
-    yearFilter(value) {
-      return `yers=${value}`;
-    },
-  },
   computed: {
     ...mapGetters({
       getMarks: 'getMarks',
