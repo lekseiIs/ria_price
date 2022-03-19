@@ -3,7 +3,7 @@
     <!-- <div>{{arithmeticMean.toFixed()}}$</div> -->
     <div class="searchResult">
       <div class="searchPrice">
-        <div class="price">10000$</div>
+        <div class="price">{{avg ? avg.toFixed() + '$' : 'Результату не знайдено'}}</div>
          <hr class="new4">
         <div class="searchResultText">Середня ціна на унiверсал Audi A4 бензин 2010 року ви</div>
       </div>
@@ -28,8 +28,7 @@
 export default {
   name: 'SearchResult',
   props: {
-    arithmeticMean: Number,
-    total: Number,
+    avg: Number,
   },
 };
 </script>

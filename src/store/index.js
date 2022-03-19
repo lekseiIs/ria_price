@@ -16,6 +16,8 @@ export default new Vuex.Store({
     regions: [],
     gearboxes: [],
     fuelTypes: [],
+    avgResult: {},
+    isFetched: false,
   },
   getters: {
     getMarks(state) {
@@ -36,6 +38,12 @@ export default new Vuex.Store({
     getFuelTypes(state) {
       return state.fuelTypes;
     },
+    getAvgResult(state) {
+      return state.avgResult;
+    },
+    getStatus(state) {
+      return state.isFetched;
+    },
   },
   mutations: {
     setMarks(state, payload) {
@@ -55,6 +63,12 @@ export default new Vuex.Store({
     },
     setFuelTypes(state, payload) {
       Vue.set(state, 'fuelTypes', payload);
+    },
+    setResult(state, payload) {
+      Vue.set(state, 'avgResult', payload);
+    },
+    setIsFetched(state, payload) {
+      Vue.set(state, 'isFetched', payload);
     },
   },
   actions: {
@@ -136,8 +150,14 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
-    setResult() {
-
+    fetchResult(ctx, url) {
+      return fetch(url).then((data) => data.json()).then((result) => {
+        ctx.commit('setResult', result);
+        return result;
+      });
+    },
+    setIsFetched(ctx, status) {
+      ctx.commit('setIsFetched', status);
     },
   },
 });
