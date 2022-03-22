@@ -1,5 +1,8 @@
 <template>
-  <form action="https://developers.ria.com/auto/average_price?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu" method="GET" class="form">
+  <form
+    class="form"
+    @submit.prevent="submitForm"
+  >
     <h3 class="form__title">Авто Вартість</h3>
     <label for="select-type">
       <select
@@ -22,7 +25,7 @@
         <option
           v-for="bodyStyle in getBodyStyles"
           :key="bodyStyle.value"
-          :value="'body_id=' + bodyStyle.value"
+          :value="bodyStyle.value"
         >
           {{ bodyStyle.name }}
         </option>
@@ -41,7 +44,7 @@
         <option
           v-for="marka in getMarks"
           :key="marka.value"
-          :value="'marka_id=' + marka.value"
+          :value="marka.value"
         >
           {{ marka.name }}
         </option>
@@ -59,7 +62,7 @@
         <option
           v-for="model in getModels"
           :key="model.value"
-          :value="'model_id=' + model.value"
+          :value="model.value"
         >
           {{ model.name }}
         </option>
@@ -105,7 +108,7 @@
           class="form__caption"
           name="select-region"
           id="select-region"
-          v-model="region"
+          v-model="additional.region"
         >
           <option disabled value="" selected>Регіон</option>
           <option
@@ -122,9 +125,9 @@
           class="form__caption form__text form__text--right"
           name="select-damage"
           id="select-damage"
-          v-model="damage"
+          v-model="additional.damage"
         >
-          <option disabled value="0" selected>ДТП</option>
+          <option disabled value="" selected>ДТП</option>
           <option value="damage=0">Не було</option>
           <option value="damage=1">Було</option>
         </select>
@@ -134,8 +137,10 @@
           class="form__caption form__text"
           name="select-custom"
           id="select-custom"
+          v-model="additional.custom"
         >
-          <option value="custom=0">Розмитнена</option>
+          <option disabled value="" selected>Документи</option>
+          <option value="custom=0" selected>Розмитнена</option>
           <option value="custom=1">Нерозмитнена</option>
         </select>
       </label>
@@ -144,9 +149,9 @@
           class="form__caption"
           name="select-gearbox"
           id="select-gearbox"
-          v-model="gearbox"
+          v-model="additional.gearbox"
         >
-          <option disabled value="0" selected>КПП</option>
+          <option disabled value="" selected>КПП</option>
           <option
             v-for="gearbox in getGearboxes"
             :key="gearbox.value"
@@ -161,9 +166,9 @@
           class="form__caption"
           name="select-fuel"
           id="select-fuel"
-          v-model="fuelType"
+          v-model="additional.fuelType"
         >
-          <option disabled value="0" selected>Паливо</option>
+          <option disabled value="" selected>Паливо</option>
           <option
             v-for="fuelType in getFuelTypes"
             :key="fuelType.value"
@@ -184,6 +189,8 @@
       </button>
       <button class="form__btn form__btn--blue">Пошук</button>
     </div>
+    <div>
+  </div>
   </form>
 </template>
 <script>
@@ -201,11 +208,13 @@ export default {
       year: '',
       raceFrom: '',
       raceTo: '',
-      region: '',
-      damage: '',
-      custom: '',
-      gearbox: '',
-      fuelType: '',
+      additional: {
+        region: '',
+        damage: '',
+        custom: '',
+        gearbox: '',
+        fuelType: '',
+      },
       addIsOpen: false,
     };
   },
@@ -225,15 +234,21 @@ export default {
       fetchRegions: 'fetchRegions',
       fetchGearboxes: 'fetchGearboxes',
       fetchFuelTypes: 'fetchFuelTypes',
+      fetchResult: 'fetchResult',
+      setIsFetched: 'setIsFetched',
     }),
     openAdditional() {
       this.addIsOpen = true;
     },
     modelsAction() {
-      this.fetchModels(this.marka.replace(/[^\d]/g, ''));
+      this.fetchModels(this.marka);
     },
-    fetchResult() {
-      console.log('1');
+    submitForm() {
+      const url = `https://developers.ria.com/auto/average_price?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&body_id=${this.bodyStyle}&marka_id=${this.marka}&model_id=${this.model}&yers=${this.year}&raceInt=${this.raceFrom}&raceInt=${this.raceTo}&`;
+      const params = Object.values(this.$data.additional).filter(
+        (e) => typeof e === 'string' && e.length,
+      );
+      this.fetchResult(url + params.join('&')).then((data) => console.log(data)).finally(() => this.setIsFetched(true));
     },
   },
   computed: {
@@ -244,6 +259,7 @@ export default {
       getRegions: 'getRegions',
       getGearboxes: 'getGearboxes',
       getFuelTypes: 'getFuelTypes',
+      getAvgResult: 'getAvgResult',
     }),
   },
 };

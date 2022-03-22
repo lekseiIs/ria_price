@@ -4,7 +4,7 @@
   <main>
 
     <SearchForm/>
-    <SearchResult/>
+    <SearchResult v-if="getStatus" :avg="getAvgResult.interQuartileMean"/>
     <PriceChart/>
   </main>
   <MainFooter/>
@@ -17,6 +17,7 @@ import MainHeader from '@/components/MainHeader.vue';
 import MainFooter from '@/components/MainFooter.vue';
 import SearchResult from '@/components/SearchResult.vue';
 import PriceChart from '@/components/PriceChart.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
@@ -26,6 +27,12 @@ export default {
     MainFooter,
     SearchResult,
     PriceChart,
+  },
+  computed: {
+    ...mapGetters({
+      getStatus: 'getStatus',
+      getAvgResult: 'getAvgResult',
+    }),
   },
 };
 </script>
