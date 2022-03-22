@@ -5,6 +5,7 @@
 
     <SearchForm/>
     <SearchResult/>
+    <PriceChart/>
   </main>
   <MainFooter/>
   </body>
@@ -15,6 +16,7 @@ import SearchForm from '@/components/SearchForm.vue';
 import MainHeader from '@/components/MainHeader.vue';
 import MainFooter from '@/components/MainFooter.vue';
 import SearchResult from '@/components/SearchResult.vue';
+import PriceChart from '@/components/PriceChart.vue';
 
 export default {
   name: 'App',
@@ -23,6 +25,7 @@ export default {
     SearchForm,
     MainFooter,
     SearchResult,
+    PriceChart,
   },
 };
 </script>
