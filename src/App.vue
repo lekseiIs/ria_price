@@ -5,7 +5,7 @@
 
     <SearchForm/>
     <SearchResult v-if="getStatus" :avg="getAvgResult.interQuartileMean"/>
-    <PriceChart/>
+    <PriceChart v-if="false"/>
   </main>
   <MainFooter/>
   </body>

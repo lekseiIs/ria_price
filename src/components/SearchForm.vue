@@ -1,7 +1,9 @@
 <template>
   <form
     class="form"
-    @submit.prevent="submitForm"
+    href="localhost:3000"
+    method="GET"
+    ref="formParams"
   >
     <h3 class="form__title">Авто Вартість</h3>
     <label for="select-type">
@@ -119,12 +121,12 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import FormAdditionals from '@/components/FormAdditionals.vue';
+// import FormAdditionals from '@/components/FormAdditionals.vue';
 
 export default {
   name: 'SearchForm',
   components: {
-    FormAdditionals,
+    FormAdditionals: () => import('@/components/FormAdditionals.vue'),
   },
   data() {
     return {
@@ -150,6 +152,7 @@ export default {
     this.fetchBodyStyles();
     this.fetchMarks();
     this.marks = this.getMarks;
+    console.log(1);
   },
   methods: {
     ...mapActions({
@@ -169,12 +172,7 @@ export default {
       this.fetchModels(this.marka);
     },
     submitForm() {
-      const apiKey = 'U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu';
-      const url = `https://developers.ria.com/auto/average_price?api_key=${apiKey}&body_id=${this.bodyStyle}&marka_id=${this.marka}&model_id=${this.model}&yers=${this.year}&raceInt=${this.raceFrom}&raceInt=${this.raceTo}&`;
-      const params = Object.values(this.$data.additional).filter(
-        (e) => typeof e === 'string' && e.length,
-      );
-      this.fetchResult(url + params.join('&')).then((data) => console.log(data)).finally(() => this.setIsFetched(true));
+      console.log(new FormData(this.$refs.formParams));
     },
   },
   computed: {
