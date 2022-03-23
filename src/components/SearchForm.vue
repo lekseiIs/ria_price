@@ -244,7 +244,8 @@ export default {
       this.fetchModels(this.marka);
     },
     submitForm() {
-      const url = `https://developers.ria.com/auto/average_price?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&body_id=${this.bodyStyle}&marka_id=${this.marka}&model_id=${this.model}&yers=${this.year}&raceInt=${this.raceFrom}&raceInt=${this.raceTo}&`;
+      const apiKey = 'U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu';
+      const url = `https://developers.ria.com/auto/average_price?api_key=${apiKey}&body_id=${this.bodyStyle}&marka_id=${this.marka}&model_id=${this.model}&yers=${this.year}&raceInt=${this.raceFrom}&raceInt=${this.raceTo}&`;
       const params = Object.values(this.$data.additional).filter(
         (e) => typeof e === 'string' && e.length,
       );
@@ -266,14 +267,25 @@ export default {
 </script>
 <style scoped lang="scss">
 select {
-  background: url(../../public/arrow.png) 95% 50% no-repeat;
+  // background: url(../../public/arrow.png) 95% 50% no-repeat;
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 13px;
   text-overflow: "";
   cursor: pointer;
+  position: relative;
+  z-index: 0;
 }
-
+select::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: url(../../public/arrow.png) 95% 50% no-repeat;
+  top: 0;
+  right: 0;
+  position: absolute;
+  z-index: 20;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

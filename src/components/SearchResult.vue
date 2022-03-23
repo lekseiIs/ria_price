@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <div>{{arithmeticMean.toFixed()}}$</div> -->
     <div class="searchResult">
       <div class="searchPrice">
         <div class="price">{{avg ? avg.toFixed() + '$' : 'Результату не знайдено'}}</div>

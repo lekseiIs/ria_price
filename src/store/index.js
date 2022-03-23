@@ -44,9 +44,6 @@ export default new Vuex.Store({
     getStatus(state) {
       return state.isFetched;
     },
-    getState(state) {
-      return state;
-    },
   },
   mutations: {
     setMarks(state, payload) {
