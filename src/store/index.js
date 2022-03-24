@@ -73,19 +73,24 @@ export default new Vuex.Store({
   },
   actions: {
     fetchMarks(ctx) {
-      fetch(
-        'https://api.auto.ria.com/categories/1/marks?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4',
-      )
-        .then((data) => {
-          const marks = data.json();
-          return marks;
-        })
-        .then((marks) => {
-          ctx.commit('setMarks', marks);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (localStorage.getItem('marks')) {
+        ctx.commit('setMarks', JSON.parse(localStorage.marks));
+      } else {
+        fetch(
+          'https://api.auto.ria.com/categories/1/marks?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4',
+        )
+          .then((data) => {
+            const marks = data.json();
+            return marks;
+          })
+          .then((marks) => {
+            localStorage.setItem('marks', JSON.stringify(marks));
+            ctx.commit('setMarks', marks);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
     fetchModels(ctx, marka) {
       fetch(
@@ -103,19 +108,24 @@ export default new Vuex.Store({
         });
     },
     fetchBodyStyles(ctx) {
-      fetch(
-        'https://developers.ria.com/auto/categories/1/bodystyles?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4',
-      )
-        .then((data) => {
-          const bodyStyles = data.json();
-          return bodyStyles;
-        })
-        .then((bodyStyles) => {
-          ctx.commit('setBodyStyles', bodyStyles);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (localStorage.getItem('bodyStyles')) {
+        ctx.commit('setBodyStyles', JSON.parse(localStorage.bodyStyles));
+      } else {
+        fetch(
+          'https://developers.ria.com/auto/categories/1/bodystyles?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4',
+        )
+          .then((data) => {
+            const bodyStyles = data.json();
+            return bodyStyles;
+          })
+          .then((bodyStyles) => {
+            localStorage.setItem('bodyStyles', JSON.stringify(bodyStyles));
+            ctx.commit('setBodyStyles', bodyStyles);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
     fetchRegions(ctx) {
       if (localStorage.getItem('regions')) {
@@ -158,19 +168,24 @@ export default new Vuex.Store({
       }
     },
     fetchFuelTypes(ctx) {
-      fetch(
-        'https://developers.ria.com/auto/type?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4',
-      )
-        .then((data) => {
-          const fuelTypes = data.json();
-          return fuelTypes;
-        })
-        .then((fuelTypes) => {
-          ctx.commit('setFuelTypes', fuelTypes);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (localStorage.getItem('fuelTypes')) {
+        ctx.commit('setFuelTypes', JSON.parse(localStorage.fuelTypes));
+      } else {
+        fetch(
+          'https://developers.ria.com/auto/type?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4',
+        )
+          .then((data) => {
+            const fuelTypes = data.json();
+            return fuelTypes;
+          })
+          .then((fuelTypes) => {
+            localStorage.setItem('fuelTypes', JSON.stringify(fuelTypes));
+            ctx.commit('setFuelTypes', fuelTypes);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
     fetchResult(ctx, url) {
       return fetch(url)
