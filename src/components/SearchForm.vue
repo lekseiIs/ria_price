@@ -215,7 +215,6 @@ input::-webkit-inner-spin-button {
 
 input {
   outline: inherit;
-  border: none;
 }
 
 input,
