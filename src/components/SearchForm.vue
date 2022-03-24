@@ -152,7 +152,6 @@ export default {
     this.fetchBodyStyles();
     this.fetchMarks();
     this.marks = this.getMarks;
-    console.log(1);
   },
   methods: {
     ...mapActions({
