@@ -187,8 +187,8 @@ export default new Vuex.Store({
           });
       }
     },
-    fetchResult(ctx, url) {
-      return fetch(url)
+    fetchResult(ctx, params) {
+      return fetch('http://localhost:3000/test', { method: 'POST', body: params })
         .then((data) => data.json())
         .then((result) => {
           ctx.commit('setResult', result);
