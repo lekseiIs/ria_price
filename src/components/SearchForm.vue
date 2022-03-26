@@ -1,25 +1,24 @@
 <template>
   <form
     class="form"
-    href="localhost:3000"
-    method="GET"
+    @submit.prevent="submitForm"
     ref="formParams"
   >
     <h3 class="form__title">Авто Вартість</h3>
-    <label for="select-type">
+    <label for="select_type">
       <select
         class="form__caption"
-        name="select-type"
+        name="select_type"
         id="select-type"
         required
       >
         <option value="1">Легкові</option>
       </select>
     </label>
-    <label for="select-body">
+    <label for="body_id">
       <select
         class="form__caption form__caption--width"
-        name="select-body"
+        name="body_id"
         id="select-body"
         v-model="bodyStyle"
       >
@@ -33,12 +32,12 @@
         </option>
       </select>
     </label>
-    <label for="select-marka">
+    <label for="marka_id">
       <select
         class="form__caption"
         @change="modelsAction"
         v-model="marka"
-        name="select-marka"
+        name="marka_id"
         id="select-marka"
         required
       >
@@ -52,10 +51,10 @@
         </option>
       </select>
     </label>
-    <label for="select-model">
+    <label for="model_id">
       <select
         class="form__caption form__caption--width"
-        name="select-model"
+        name="model_id"
         id="select-model"
         v-model="model"
         required
@@ -70,13 +69,13 @@
         </option>
       </select>
     </label>
-    <label for="input-year">
+    <label for="yers">
       <input
         class="form__caption form__caption--width"
         v-model="year"
         type="number"
         :max="new Date().getFullYear()"
-        name="input-year"
+        name="yers"
         id="input-year"
         required
         autocomplete="off"
@@ -86,6 +85,7 @@
     <div class="race-inputs">
       <label for="#" class="form__inner">
         <input
+          name="raceInt"
           class="form__caption form__text"
           v-model="raceFrom"
           min="5"
@@ -95,6 +95,7 @@
           required
         />
         <input
+          name="raceInt"
           class="form__caption form__text"
           v-model="raceTo"
           max="999"
@@ -171,7 +172,9 @@ export default {
       this.fetchModels(this.marka);
     },
     submitForm() {
-      console.log(new FormData(this.$refs.formParams));
+      const params = new FormData(this.$refs.formParams);
+      console.log(params.get('select-type'));
+      this.fetchResult(params);
     },
   },
   computed: {
