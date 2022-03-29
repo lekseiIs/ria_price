@@ -4,7 +4,7 @@
       <div class="searchPrice">
         <div class="price">{{avg ? avg.toFixed() + '$' : 'Результату не знайдено'}}</div>
          <hr class="new4">
-        <div class="searchResultText">Середня ціна на унiверсал Audi A4 бензин 2010 року ви</div>
+        <div class="searchResultText">Зараз продається {{total}} авто</div>
       </div>
     </div>
     <div class="button">
@@ -28,6 +28,7 @@ export default {
   name: 'SearchResult',
   props: {
     avg: Number,
+    total: Number,
   },
 };
 </script>

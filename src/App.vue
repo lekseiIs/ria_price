@@ -1,13 +1,17 @@
 <template>
   <body id="app">
-  <MainHeader/>
-  <main>
-
-    <SearchForm/>
-    <SearchResult v-if="getStatus" :avg="getAvgResult.interQuartileMean"/>
-    <PriceChart v-if="false"/>
-  </main>
-  <MainFooter/>
+    <MainHeader />
+    <main>
+      <SearchForm />
+      <SearchResult
+        v-if="getStatus"
+        :avg="getAvgResult.interQuartileMean"
+        :total="getAvgResult.total"
+      />
+      <LoadingSpinner v-if="getLoaded" />
+      <PriceChart v-if="false" />
+    </main>
+    <MainFooter />
   </body>
 </template>
 
@@ -15,8 +19,6 @@
 import SearchForm from '@/components/SearchForm.vue';
 import MainHeader from '@/components/MainHeader.vue';
 import MainFooter from '@/components/MainFooter.vue';
-import SearchResult from '@/components/SearchResult.vue';
-import PriceChart from '@/components/PriceChart.vue';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -25,26 +27,30 @@ export default {
     MainHeader,
     SearchForm,
     MainFooter,
-    SearchResult,
-    PriceChart,
+    SearchResult: () => import('@/components/SearchResult.vue'),
+    PriceChart: () => import('@/components/PriceChart.vue'),
+    LoadingSpinner: () => import('@/components/LoadingSpinner.vue'),
   },
   computed: {
     ...mapGetters({
       getStatus: 'getStatus',
       getAvgResult: 'getAvgResult',
+      getLoaded: 'getLoaded',
     }),
   },
 };
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 body {
   margin: 0;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -52,9 +58,9 @@ body {
   main {
     padding-top: 50px;
   }
-  .header{
-    &__bottom{
-     display: block;
+  .header {
+    &__bottom {
+      display: block;
       width: 100%;
     }
   }
@@ -81,5 +87,4 @@ body {
 main {
   flex: 1;
 }
-
 </style>

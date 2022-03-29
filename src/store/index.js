@@ -18,6 +18,7 @@ export default new Vuex.Store({
     fuelTypes: [],
     avgResult: {},
     isFetched: false,
+    isLoaded: false,
   },
   getters: {
     getMarks(state) {
@@ -44,6 +45,9 @@ export default new Vuex.Store({
     getStatus(state) {
       return state.isFetched;
     },
+    getLoaded(state) {
+      return state.isLoaded;
+    },
   },
   mutations: {
     setMarks(state, payload) {
@@ -69,6 +73,9 @@ export default new Vuex.Store({
     },
     setIsFetched(state, payload) {
       Vue.set(state, 'isFetched', payload);
+    },
+    setIsLoaded(state, payload) {
+      Vue.set(state, 'isLoaded', payload);
     },
   },
   actions: {
@@ -188,15 +195,18 @@ export default new Vuex.Store({
       }
     },
     fetchResult(ctx, params) {
-      return fetch('http://localhost:3000/test', { method: 'POST', body: params })
+      return fetch('http://localhost:3000/avg-price', { method: 'POST', body: params })
         .then((data) => data.json())
         .then((result) => {
           ctx.commit('setResult', result);
           return result;
-        });
+        }).catch((e) => console.log(e));
     },
     setIsFetched(ctx, status) {
       ctx.commit('setIsFetched', status);
+    },
+    setIsLoaded(ctx, status) {
+      ctx.commit('setIsLoaded', status);
     },
   },
 });

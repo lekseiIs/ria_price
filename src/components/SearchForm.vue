@@ -20,7 +20,6 @@
         class="form__caption form__caption--width"
         name="body_id"
         id="select-body"
-        v-model="bodyStyle"
       >
         <option disabled value="" selected>Тип кузова</option>
         <option
@@ -36,9 +35,9 @@
       <select
         class="form__caption"
         @change="modelsAction"
-        v-model="marka"
         name="marka_id"
         id="select-marka"
+        v-model="marka"
         required
       >
         <option disabled value="" selected>Марка</option>
@@ -56,7 +55,6 @@
         class="form__caption form__caption--width"
         name="model_id"
         id="select-model"
-        v-model="model"
         required
       >
         <option disabled value="" selected>Модель</option>
@@ -72,8 +70,8 @@
     <label for="yers">
       <input
         class="form__caption form__caption--width"
-        v-model="year"
         type="number"
+        min="1930"
         :max="new Date().getFullYear()"
         name="yers"
         id="input-year"
@@ -87,7 +85,6 @@
         <input
           name="raceInt"
           class="form__caption form__text"
-          v-model="raceFrom"
           min="5"
           :max="raceTo"
           type="number"
@@ -98,7 +95,7 @@
           name="raceInt"
           class="form__caption form__text"
           v-model="raceTo"
-          max="999"
+          max="1000"
           type="number"
           placeholder="Пробіг до"
           required
@@ -122,7 +119,6 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex';
-// import FormAdditionals from '@/components/FormAdditionals.vue';
 
 export default {
   name: 'SearchForm',
@@ -131,21 +127,8 @@ export default {
   },
   data() {
     return {
-      bodyStyle: '',
-      marks: [],
       marka: '',
-      models: [],
-      model: '',
-      year: '',
-      raceFrom: '',
       raceTo: '',
-      additional: {
-        region: '',
-        damage: '',
-        custom: '',
-        gearbox: '',
-        fuelType: '',
-      },
       addIsOpen: false,
     };
   },
@@ -164,6 +147,7 @@ export default {
       fetchFuelTypes: 'fetchFuelTypes',
       fetchResult: 'fetchResult',
       setIsFetched: 'setIsFetched',
+      setisLoaded: 'setIsLoaded',
     }),
     openAdditional() {
       this.addIsOpen = true;
@@ -173,8 +157,18 @@ export default {
     },
     submitForm() {
       const params = new FormData(this.$refs.formParams);
-      console.log(params.get('select-type'));
-      this.fetchResult(params);
+      this.fetchResult(params)
+        .then(() => {
+          this.setIsFetched(false);
+          this.setisLoaded(true);
+        })
+        .catch((error) => console.log(error))
+        .finally(() => {
+          setTimeout(() => {
+            this.setisLoaded(false);
+            this.setIsFetched(true);
+          }, 1000);
+        });
     },
   },
   computed: {
