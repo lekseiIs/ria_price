@@ -5,11 +5,11 @@
       <SearchForm />
       <SearchResult
         v-if="getStatus"
-        :avg="getAvgResult.interQuartileMean"
-        :total="getAvgResult.total"
+        :avg="getAvgResult.apiRequest.interQuartileMean"
+        :total="getAvgResult.apiRequest.total"
       />
       <LoadingSpinner v-if="getLoaded" />
-      <PriceChart v-if="false" />
+      <PriceChart v-if="getStatus" />
     </main>
     <MainFooter />
   </body>
