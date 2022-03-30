@@ -195,7 +195,7 @@ export default new Vuex.Store({
       }
     },
     fetchResult(ctx, params) {
-      return fetch('http://localhost:3000/avg-price', { method: 'POST', body: params })
+      return fetch(process.env.VUE_APP_API_URL, { method: 'POST', body: params })
         .then((data) => data.json())
         .then((result) => {
           ctx.commit('setResult', result);

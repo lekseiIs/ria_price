@@ -156,6 +156,7 @@ export default {
       this.fetchModels(this.marka);
     },
     submitForm() {
+      console.log(process.env.VUE_APP_API_URL);
       const params = new FormData(this.$refs.formParams);
       this.fetchResult(params)
         .then(() => {

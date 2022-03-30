@@ -1,29 +1,60 @@
+// export const priceChartData = (labelsData, numsData) => ({
+//   type: 'line',
+//   data: {
+//     labels: labelsData,
+//     datasets: [
+//       {
+//         label: 'Прогнозна зміна вартості авто',
+//         data: numsData,
+//         backgroundColor: 'rgba(33, 155, 231, .5)',
+//         borderColor: 'rgba(219, 92, 76, 0.5)',
+//         borderWidth: 3,
+//       },
+//     ],
+//   },
+//   options: {
+//     responsive: true,
+//     lineTension: 1,
+//     scales: {
+//       yAxes: [
+//         {
+//           ticks: {
+//             beginAtZero: true,
+//             padding: 25,
+//           },
+//         },
+//       ],
+//     },
+//   },
+// });
+
+import animation from './animation';
+
 export const priceChartData = (labelsData, numsData) => ({
   type: 'line',
   data: {
     labels: labelsData,
     datasets: [
       {
-        label: 'Прогнозна зміна вартості авто',
         data: numsData,
-        backgroundColor: 'rgba(54,73,93,.5)',
-        borderColor: '#36495d',
-        borderWidth: 3,
+        borderColor: 'rgba(219, 92, 76, 0.5)',
+        borderWidth: 1,
+        radius: 0,
       },
     ],
   },
   options: {
-    responsive: true,
-    lineTension: 1,
+    animation,
+    interaction: {
+      intersect: false,
+    },
+    plugins: {
+      legend: false,
+    },
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-            padding: 25,
-          },
-        },
-      ],
+      x: {
+        type: 'linear',
+      },
     },
   },
 });
