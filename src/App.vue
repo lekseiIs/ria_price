@@ -8,8 +8,12 @@
         :avg="getAvgResult.apiRequest.interQuartileMean"
         :total="getAvgResult.apiRequest.total"
       />
-      <LoadingSpinner v-if="getLoaded" />
-      <PriceChart v-if="getStatus" />
+      <LoadingSpinner v-show="getLoaded" />
+      <PriceChart
+        v-if="getStatus"
+        :labels="getAvgResult.dbRequest.labels"
+        :nums="getAvgResult.dbRequest.nums"
+      />
     </main>
     <MainFooter />
   </body>
