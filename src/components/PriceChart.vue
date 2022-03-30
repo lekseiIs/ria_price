@@ -10,14 +10,13 @@ import priceChartData from '@/price-data';
 
 export default {
   name: 'PriceChart',
-  data() {
-    return {
-      priceChartData,
-    };
+  props: {
+    labels: Array,
+    nums: Array,
   },
   mounted() {
     const ctx = document.getElementById('price-chart');
-    new Chart(ctx, this.priceChartData);
+    new Chart(ctx, priceChartData(this.labels, this.nums));
   },
 };
 </script>
