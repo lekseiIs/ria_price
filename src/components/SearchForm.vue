@@ -187,7 +187,8 @@ export default {
 </script>
 <style  lang="scss">
 select {
-  // background: url(../../public/arrow.png) 95% 50% no-repeat;
+  background: url(../../public/arrow.png) no-repeat;
+  background-position: right 18px  top 50%;
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 13px;
@@ -196,16 +197,16 @@ select {
   position: relative;
   z-index: 0;
 }
-select::after {
-  content: '';
-  width: 10px;
-  height: 10px;
-  background: url(../../public/arrow.png) 95% 50% no-repeat;
-  top: 0;
-  right: 0;
-  position: absolute;
-  z-index: 20;
-}
+// select::before {
+//   content: '';
+//   width: 10px;
+//   height: 10px;
+//   background: url(../../public/arrow.png) 95% 50% no-repeat;
+//   top: 0;
+//   right: 0;
+//   position: absolute;
+//   z-index: -1;
+// }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

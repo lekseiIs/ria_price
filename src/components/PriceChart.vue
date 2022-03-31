@@ -11,8 +11,14 @@ import priceChartData from '@/price-data';
 export default {
   name: 'PriceChart',
   props: {
-    labels: Array,
-    nums: Array,
+    labels: {
+      type: Array,
+      default: () => [],
+    },
+    nums: {
+      type: Array,
+      default: () => [],
+    },
   },
   mounted() {
     const ctx = document.getElementById('price-chart');
