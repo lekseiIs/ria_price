@@ -42,6 +42,9 @@ export default {
       getLoaded: 'getLoaded',
     }),
   },
+  created() {
+    console.log(window.location.pathname);
+  },
 };
 </script>
 

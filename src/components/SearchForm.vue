@@ -34,7 +34,6 @@
     <label for="marka_id">
       <select
         class="form__caption"
-        @change="modelsAction"
         name="marka_id"
         id="select-marka"
         v-model="marka"
@@ -172,6 +171,9 @@ export default {
         });
     },
   },
+  watch: {
+    marka: 'modelsAction',
+  },
   computed: {
     ...mapGetters({
       getMarks: 'getMarks',
@@ -197,16 +199,7 @@ select {
   position: relative;
   z-index: 0;
 }
-// select::before {
-//   content: '';
-//   width: 10px;
-//   height: 10px;
-//   background: url(../../public/arrow.png) 95% 50% no-repeat;
-//   top: 0;
-//   right: 0;
-//   position: absolute;
-//   z-index: -1;
-// }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

@@ -33,7 +33,7 @@
         name="custom"
         id="select-custom"
       >
-        <option disabled value="" selected>Документи</option>
+        <option disabled value="" selected>Розмитнення</option>
         <option value="0">Розмитнена</option>
         <option value="1">Нерозмитнена</option>
       </select>
