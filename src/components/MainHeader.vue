@@ -8,7 +8,7 @@
                 <img  src="../assets/logo2.svg" alt="logo">
             </div>
             <button class="btn" href="#">
-              <span class="plus">+ <span class="sell">Продати авто</span></span>
+              <span class="plus">+ <span class="sell"> Продати авто</span></span>
             </button>
           </div>
           <div class="header__bottom">
@@ -35,78 +35,83 @@ export default {
 
 .header {
   width: 100%;
-
   &__inner {
-    padding-top: 16px;
-    //  padding-left: 11px;
-    //flex-direction: column;
+    padding: 14px 14px 0px 14px;
   }
-
   &__top {
-   // display: flex;
     justify-content: space-between;
-    //margin-bottom: 7px;
     user-select: none;
-    height: 48px;
     display: flex;
-    justify-content: space-around;
   }
   &__bottom{
     align-content: center;
   }
 }
-.container{
-    width: 80%;
-    margin-left: 10%;
-  }
+.logo{
+  height: 41px;
+}
 .logo img{
-      width: 163px;
-      height: 48px;
-
-      top: 16px;
-    }
+  width: 139px;
+  height: 41px;
+}
 .header__message {
-  color: #256799;
-  font-size: 16px;
+  color: #4979AA;
+  font-size: 15px;
   user-select: none;
   width: 100%;
-  padding-left: 11px;
+  padding: 11px 0px 10px 0px;
+  font-weight: 600;
 }
 .btn {
-  width: 165px;
-  height: 47.79px;
+  width: 139px;
+  height: 40px;
   background-color: #89BC39;
   border-radius: 3px;
-
+  padding: 0%;
 }
 .plus{
-  font-size: 36px;
+  font-size: 32px;
   line-height: 42px;
   color: #FFFFFF;
-  text-align: center;
+  //text-align: center;
   font-weight: bold;
 }
 .sell{
-  font-size: 18px;
+  font-size: 16px;
   color: #FFFFFF;
   font-weight: normal;
+  vertical-align: bottom;
+  top:50%;
 }
 
-/*
-@media (min-width: 600px) and (max-width: 1400px) {
+@media screen and (max-width: 425px) {
+
+}
+
+@media (min-width: 768px) {
   .header{
     &__inner{
       justify-content: space-around;
       //align-items: center;
+      //width: 70%;
+      margin-left: 14px;
+      margin-right: 14px;
     }
     &__message{
-      font-size: 22px;
+      font-size: 15px;
     }
   }
-  .logo {
-    width: 200px;
-  }
+
+  // .logo img{
+  //   width: 207px;
+  //   height: 61px;
+  // }
+//   .btn {
+//   width: 186.85px;
+//   height: 51px;
+//  }
 }
+/*
 @media screen and  (min-width: 1400px) {
   .container {
     width: 848px;

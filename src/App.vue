@@ -2,6 +2,7 @@
   <body id="app">
     <MainHeader />
     <main>
+
       <SearchForm />
       <SearchResult
         v-if="getStatus"
@@ -51,13 +52,12 @@ export default {
 body {
   margin: 0;
 }
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-
+/*
 @media screen and (min-width: 1400px) {
   main {
     padding-top: 50px;
@@ -72,12 +72,27 @@ body {
 @media screen and (max-width: 1400px) {
   main {
     padding-top: 30px;
+    width: 70%;
   }
 }
-@media screen and (max-width: 600px) {
-  main {
-    padding-top: 10px;
+*/
+@media (min-width: 767px) {
+  // main {
+  //   width: 70%;
+  //   margin-left: 15%;
+  // }
+  #app{
+    margin-left: auto;
+    margin-right: auto;
+    width: 640px;
   }
+}
+@media screen and (max-width: 425px) {
+  // main {
+  //   width: 100%;
+  //   padding-top: 10px;
+  // }
+
 }
 #app {
   font-family: Roboto, Arial, sans-serif;
