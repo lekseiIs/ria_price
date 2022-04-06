@@ -101,7 +101,7 @@ export default new Vuex.Store({
     },
     fetchModels(ctx, marka) {
       fetch(
-        `https://api.auto.ria.com/categories/1/marks/${marka}/models?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4`,
+        `${process.env.VUE_APP_API_URL}/get-models/${marka}`,
       )
         .then((data) => {
           const models = data.json();
@@ -195,7 +195,7 @@ export default new Vuex.Store({
       }
     },
     fetchResult(ctx, params) {
-      return fetch(process.env.VUE_APP_API_URL, { method: 'POST', body: params })
+      return fetch(`${process.env.VUE_APP_API_URL}/avg-price`, { method: 'POST', body: params })
         .then((data) => data.json())
         .then((result) => {
           ctx.commit('setResult', result);

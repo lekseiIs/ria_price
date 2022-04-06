@@ -2,6 +2,7 @@
   <body id="app">
     <MainHeader />
     <main>
+      <SearchById />
       <SearchForm />
       <SearchResult
         v-if="getStatus"
@@ -23,6 +24,7 @@
 import SearchForm from '@/components/SearchForm.vue';
 import MainHeader from '@/components/MainHeader.vue';
 import MainFooter from '@/components/MainFooter.vue';
+import SearchById from '@/components/SearchId.vue';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -31,6 +33,7 @@ export default {
     MainHeader,
     SearchForm,
     MainFooter,
+    SearchById,
     SearchResult: () => import('@/components/SearchResult.vue'),
     PriceChart: () => import('@/components/PriceChart.vue'),
     LoadingSpinner: () => import('@/components/LoadingSpinner.vue'),
