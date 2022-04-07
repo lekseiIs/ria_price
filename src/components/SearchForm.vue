@@ -184,6 +184,9 @@ export default {
         });
     },
   },
+  watch: {
+    marka: 'modelsAction',
+  },
   computed: {
     ...mapGetters({
       getMarks: 'getMarks',
