@@ -206,11 +206,11 @@ select {
   background-position: right 18px  top 50%;
   -webkit-appearance: none;
   -moz-appearance: none;
-  text-indent: 13px;
   text-overflow: "";
   cursor: pointer;
   position: relative;
   z-index: 0;
+  padding-left: 15px;
 }
 
 input::-webkit-outer-spin-button,
@@ -224,7 +224,7 @@ input {
 
 input,
 input::placeholder {
-  padding: 13px;
+  padding: 0;
 }
 
 /* Firefox */
@@ -239,13 +239,12 @@ button {
   border: none;
   cursor: pointer;
 }
-
 .form {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 0 auto 0;
-  font-size: 13px;
+  font-size: 14.5px;
   padding: 14px 14px 14px 14px;
   color: #fff;
   background-color: #db5c4c;
@@ -265,8 +264,7 @@ button {
   }
 
   &__caption {
-    font-size: 14.5px;
-    padding: 0px 10px;
+    padding: 0px 0px 0px 15px;
     background-color: #fff;
     color: #777;
     margin-bottom: 12px;
@@ -313,34 +311,18 @@ select {
   width: 100%;
 }
 
-@media screen and (min-width: 425px) {
-
-}
 @media (min-width: 768px) {
-
-.form{
-      display: inline-block;
-      column-count: 2;
-      padding-bottom: 2px;
-    }
-  .form {
-
-    &__btn {
-      font-size: 17px;
-    }
-    &__caption {
+.form {
+    display: inline-block;
+    column-count: 2;
+    padding-bottom: 2px;
+  &__btn {
       font-size: 14.5px;
+      width: 100%;
     }
   }
   .first label {
     width: 100px;
-  }
-  select option {
-    width: 100%;
-
-  }
-  .race-inputs label input{
-    margin-right: 0;
   }
 }
 </style>
