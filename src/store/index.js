@@ -5,14 +5,21 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    formState: {
+      body_id: '',
+      marka_id: '',
+      model_id: '',
+      yers: '',
+      raceInt: '',
+      state_id: '',
+      damage: '',
+      custom: '',
+      gear_id: '',
+      fuel_id: '',
+    },
     marks: [],
-    marka: '',
     models: [],
-    model: '',
     bodyStyles: [],
-    year: '',
-    raceFrom: '',
-    raceTo: '',
     regions: [],
     gearboxes: [],
     fuelTypes: [],
@@ -48,6 +55,9 @@ export default new Vuex.Store({
     getLoaded(state) {
       return state.isLoaded;
     },
+    getFormState(state) {
+      return state.formState;
+    },
   },
   mutations: {
     setMarks(state, payload) {
@@ -76,6 +86,9 @@ export default new Vuex.Store({
     },
     setIsLoaded(state, payload) {
       Vue.set(state, 'isLoaded', payload);
+    },
+    setFormState(state, payload) {
+      Vue.set(state, 'formState', payload);
     },
   },
   actions: {
@@ -207,6 +220,9 @@ export default new Vuex.Store({
     },
     setIsLoaded(ctx, status) {
       ctx.commit('setIsLoaded', status);
+    },
+    changeFormState(ctx, newState) {
+      ctx.commit('setFormState', newState);
     },
   },
 });

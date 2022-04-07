@@ -20,6 +20,7 @@
         class="form__caption form__caption--width"
         name="body_id"
         id="select-body"
+        v-model="getFormState.body_id"
       >
         <option disabled value="" selected>Тип кузова</option>
         <option
@@ -36,7 +37,7 @@
         class="form__caption"
         name="marka_id"
         id="select-marka"
-        v-model="marka"
+        v-model="getFormState.marka_id"
         required
       >
         <option disabled value="" selected>Марка</option>
@@ -54,6 +55,7 @@
         class="form__caption form__caption--width"
         name="model_id"
         id="select-model"
+        v-model="getFormState.model_id"
         required
       >
         <option disabled value="" selected>Модель</option>
@@ -77,6 +79,7 @@
         required
         autocomplete="off"
         placeholder="Рік"
+        v-model="getFormState.yers"
       />
     </label>
     <div class="race-inputs">
@@ -85,15 +88,16 @@
           name="raceInt"
           class="form__caption form__text"
           min="5"
-          :max="raceTo"
+          :max="getFormState.raceInt"
           type="number"
           placeholder="Пробіг від"
+          value="5"
           required
         />
         <input
           name="raceInt"
           class="form__caption form__text"
-          v-model="raceTo"
+          v-model="getFormState.raceInt"
           max="1000"
           type="number"
           placeholder="Пробіг до"
@@ -126,7 +130,7 @@ export default {
   },
   data() {
     return {
-      marka: '',
+      // marka: '',
       raceTo: '',
       addIsOpen: false,
     };
@@ -147,12 +151,13 @@ export default {
       fetchResult: 'fetchResult',
       setIsFetched: 'setIsFetched',
       setisLoaded: 'setIsLoaded',
+      changeFormState: 'changeFormState',
     }),
     openAdditional() {
       this.addIsOpen = true;
     },
     modelsAction() {
-      this.fetchModels(this.marka);
+      this.fetchModels(this.getFormState.marka_id);
     },
     submitForm() {
       console.log(process.env.VUE_APP_API_URL);
@@ -183,7 +188,11 @@ export default {
       getGearboxes: 'getGearboxes',
       getFuelTypes: 'getFuelTypes',
       getAvgResult: 'getAvgResult',
+      getFormState: 'getFormState',
     }),
+    marka() {
+      return this.getFormState.marka_id;
+    },
   },
 };
 </script>
