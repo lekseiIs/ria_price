@@ -58,7 +58,7 @@
       >
         <option disabled value="" selected>Модель</option>
         <option
-          v-for="model in getModels"
+          v-for="model in getModels.data"
           :key="model.value"
           :value="model.value"
         >
