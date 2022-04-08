@@ -116,7 +116,7 @@ export default new Vuex.Store({
 
     fetchModels(ctx, marka) {
       fetch(
-        `${process.env.VUE_APP_API_URL}/get-models/${marka}`,
+        `http://localhost:3000/get-models/${marka}`,
       )
         .then((data) => {
           const models = data.json();

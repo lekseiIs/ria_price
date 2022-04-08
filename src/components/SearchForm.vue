@@ -1,9 +1,5 @@
 <template>
-  <form
-    class="form"
-    @submit.prevent="submitForm"
-    ref="formParams"
-  >
+  <form class="form" @submit.prevent="submitForm" ref="formParams">
     <h3 class="form__title">Авто Вартість</h3>
     <label for="select_type">
       <select
@@ -105,7 +101,9 @@
         />
       </label>
     </div>
-    <FormAdditionals v-if="addIsOpen"/>
+    <transition name="fade">
+      <FormAdditionals v-if="addIsOpen" />
+    </transition>
     <div class="btn">
       <button
         class="form__btn form__btn--transparent"
@@ -116,8 +114,7 @@
       </button>
       <button class="form__btn form__btn--blue">Пошук</button>
     </div>
-    <div>
-  </div>
+    <div></div>
   </form>
 </template>
 <script>
@@ -199,7 +196,7 @@ export default {
 <style  lang="scss">
 select {
   background: url(../../public/arrow.png) no-repeat;
-  background-position: right 18px  top 50%;
+  background-position: right 18px top 50%;
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 13px;
@@ -297,6 +294,14 @@ button {
       border: 1px solid #fff;
     }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
 }
 
 .form__caption--width,
