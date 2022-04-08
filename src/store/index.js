@@ -92,6 +92,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
+
     fetchMarks(ctx) {
       if (localStorage.getItem('marks')) {
         ctx.commit('setMarks', JSON.parse(localStorage.marks));
@@ -112,6 +113,7 @@ export default new Vuex.Store({
           });
       }
     },
+
     fetchModels(ctx, marka) {
       fetch(
         `${process.env.VUE_APP_API_URL}/get-models/${marka}`,
