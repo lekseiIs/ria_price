@@ -110,11 +110,5 @@ export default {
 
 </script>
 <style scoped lang="scss">
-@media (min-width: 426px) and (max-width: 1400px) {
-   .additionally{
-    //margin-left: 5px;
-
-  }
-}
 
 </style>
