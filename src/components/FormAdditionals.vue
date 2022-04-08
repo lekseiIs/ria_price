@@ -5,6 +5,7 @@
         class="form__caption"
         name="state_id"
         id="select-region"
+        v-model="getFormState.state_id"
       >
         <option disabled value="" selected>Регіон</option>
         <option
@@ -21,6 +22,7 @@
         class="form__caption form__text form__text--right"
         name="damage"
         id="select-damage"
+        v-model="getFormState.damage"
       >
         <option disabled value="" selected>ДТП</option>
         <option value="0">Не було</option>
@@ -32,6 +34,7 @@
         class="form__caption form__text"
         name="custom"
         id="select-custom"
+        v-model="getFormState.custom"
       >
         <option disabled value="" selected>Розмитнення</option>
         <option value="0">Розмитнена</option>
@@ -43,6 +46,7 @@
         class="form__caption"
         name="gear_id"
         id="select-gearbox"
+        v-model="getFormState.gear_id"
       >
         <option disabled value="" selected>КПП</option>
         <option
@@ -59,6 +63,7 @@
         class="form__caption"
         name="fuel_id"
         id="select-fuel"
+        v-model="getFormState.fuel_id"
       >
         <option disabled value="" selected>Паливо</option>
         <option
@@ -80,11 +85,6 @@ export default {
   name: 'FormAdditionals',
   data() {
     return {
-      region: '',
-      damage: '',
-      custom: '',
-      gearbox: '',
-      fuelType: '',
     };
   },
   created() {
@@ -104,6 +104,7 @@ export default {
       getRegions: 'getRegions',
       getGearboxes: 'getGearboxes',
       getFuelTypes: 'getFuelTypes',
+      getFormState: 'getFormState',
     }),
   },
 };

@@ -16,12 +16,12 @@
         <div class="search-start" v-if="!input">
           <p class="result-title">Введіть ID оголошення</p>
         </div>
-        <div class="search-success" v-else-if="success">
+        <div class="search-success" v-else-if="success" @click="fillForm">
           <div class="result-img">
-            <img :src="result.data.photo" :alt="result.data.markName" />
+            <img :src="result.photo" :alt="result.markName" />
           </div>
           <p class="result-title">
-            {{ result.data.markName + " " + result.data.modelName }}
+            {{ result.markName + " " + result.modelName }}
           </p>
         </div>
         <div class="search-failed" v-else-if="nothing">
@@ -35,6 +35,7 @@
 <script>
 import debounce from 'lodash.debounce';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'SearchId',
@@ -61,7 +62,7 @@ export default {
       await fetch(`${process.env.VUE_APP_API_URL}/ad/info?id=${input}`)
         .then((data) => data.json())
         .then((json) => {
-          this.result = json;
+          this.result = json.data;
           this.success = true;
         })
         .catch((error) => {
@@ -88,6 +89,12 @@ export default {
     inputChange(newVal) {
       return newVal;
     },
+    fillForm() {
+      this.changeFormState(this.result);
+    },
+    ...mapActions({
+      changeFormState: 'changeFormState',
+    }),
   },
   watch: {
     input(...args) {
