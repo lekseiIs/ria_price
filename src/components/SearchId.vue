@@ -16,9 +16,9 @@
         <LoadingSpinner v-if="spinner" />
         <div class="search-start" v-if="!input">
           <p class="result-title">Введіть ID оголошення</p>
+          <HistoryElem />
         </div>
-      <!-- eslint-disable-next-line -->
-        <div class="search-success" v-else-if="success" @click="fillForm">
+      <div class="search-success" v-else-if="success" @click="fillForm" v-on:keyup.enter="fillForm">
           <div class="result-img">
             <img :src="result.photo" :alt="result.markName" />
           </div>
@@ -37,7 +37,9 @@
 <script>
 import debounce from 'lodash.debounce';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
+import HistoryElem from '@/components/History/HistoryElem.vue';
 import { mapActions } from 'vuex';
+import addToLocalStorage from './History/locStor';
 
 export default {
   name: 'SearchId',
@@ -54,6 +56,7 @@ export default {
   },
   components: {
     LoadingSpinner,
+    HistoryElem,
   },
   created() {
     this.debouncedWatch = debounce(async (newValue) => {
@@ -61,9 +64,11 @@ export default {
       this.spinner = true;
       this.nothing = false;
       this.success = false;
-      await fetch(`${process.env.VUE_APP_API_URL}/ad/info?id=${input}`)
+      await fetch(`http://localhost:3000/ad/info?id=${input}`)
         .then((data) => data.json())
         .then((json) => {
+          addToLocalStorage(json.data);
+          console.log(json.data);
           this.result = json.data;
           this.success = true;
         })
@@ -92,6 +97,7 @@ export default {
       return newVal;
     },
     fillForm() {
+      console.log(this.result);
       this.changeFormState(this.result);
     },
     ...mapActions({
@@ -112,7 +118,8 @@ export default {
   margin: 10px 0 14px 14px;
   border: 1px solid #DB5C4C;
   border-radius: 3px;
-    /* border-bottom: none; */
+  z-index: 999;
+  /* border-bottom: none; */
 }
 input {
   width: 100%;

@@ -26,6 +26,7 @@ export default new Vuex.Store({
     avgResult: {},
     isFetched: false,
     isLoaded: false,
+    historyById: [],
   },
   getters: {
     getMarks(state) {
@@ -57,6 +58,9 @@ export default new Vuex.Store({
     },
     getFormState(state) {
       return state.formState;
+    },
+    getHistoryById(state) {
+      return state.historyById;
     },
   },
   mutations: {
@@ -90,9 +94,17 @@ export default new Vuex.Store({
     setFormState(state, payload) {
       Vue.set(state, 'formState', payload);
     },
+    setHistoryById(state, payload) {
+      Vue.set(state, 'historyById', payload);
+    },
   },
   actions: {
-
+    // eslint-disable-next-line
+        setToLocalStorage(ctx) {
+      const ls = localStorage.getItem('serchByID');
+      const arr = [...JSON.parse(ls)];
+      ctx.commit('setHistoryById', arr);
+    },
     fetchMarks(ctx) {
       if (localStorage.getItem('marks')) {
         ctx.commit('setMarks', JSON.parse(localStorage.marks));
