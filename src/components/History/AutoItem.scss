@@ -1,0 +1,12 @@
+.asd {
+    color: rgb(204, 204, 204);
+}
+.item_auto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding-bottom: 7px;
+    margin-bottom: 7px;
+    box-shadow: 0 4px 4px -4px gray;
+}
