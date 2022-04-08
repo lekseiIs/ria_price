@@ -57,33 +57,10 @@ export default {
 body {
   margin: 0;
 }
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-@media screen and (min-width: 1400px) {
-  main {
-    padding-top: 50px;
-  }
-  .header {
-    &__bottom {
-      display: block;
-      width: 100%;
-    }
-  }
-}
-@media screen and (max-width: 1400px) {
-  main {
-    padding-top: 30px;
-  }
-}
-@media screen and (max-width: 600px) {
-  main {
-    padding-top: 10px;
-  }
 }
 #app {
   font-family: Roboto, Arial, sans-serif;
@@ -96,5 +73,13 @@ body {
 }
 main {
   flex: 1;
+}
+
+@media (min-width: 767px) {
+  #app{
+    margin-left: auto;
+    margin-right: auto;
+    width: 640px;
+  }
 }
 </style>

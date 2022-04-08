@@ -136,6 +136,8 @@ export default {
     this.fetchBodyStyles();
     this.fetchMarks();
     this.marks = this.getMarks;
+    this.checkSize();
+    window.addEventListener('resize', this.checkSize);
   },
   methods: {
     ...mapActions({
@@ -150,6 +152,9 @@ export default {
       setisLoaded: 'setIsLoaded',
       changeFormState: 'changeFormState',
     }),
+    checkSize() {
+      this.addIsOpen = window.innerWidth > 767;
+    },
     openAdditional() {
       this.addIsOpen = true;
     },
@@ -199,11 +204,11 @@ select {
   background-position: right 18px top 50%;
   -webkit-appearance: none;
   -moz-appearance: none;
-  text-indent: 13px;
   text-overflow: "";
   cursor: pointer;
   position: relative;
   z-index: 0;
+  padding-left: 15px;
 }
 
 input::-webkit-outer-spin-button,
@@ -217,7 +222,7 @@ input {
 
 input,
 input::placeholder {
-  padding: 13px;
+  padding: 0;
 }
 
 /* Firefox */
@@ -232,35 +237,38 @@ button {
   border: none;
   cursor: pointer;
 }
-
 .form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 0 auto 10px;
-  font-size: 13px;
-  padding: 15px;
+  margin: 0 auto 0;
+  font-size: 14.5px;
+  padding: 14px 14px 14px 14px;
   color: #fff;
   background-color: #db5c4c;
 
   &__title {
     display: block;
     border: 1px solid #fff;
+    height: 40px;
     font-size: 18px;
     font-weight: 400;
     color: #fff;
     border-radius: 3px;
     text-align: center;
-    padding: 15px 0;
+    padding: 8px 0;
+    margin-top: 0;
+    margin-bottom: 12px;
   }
 
   &__caption {
-    font-size: 13px;
-    padding: 13px 10px;
+    padding: 0px 0px 0px 15px;
     background-color: #fff;
     color: #777;
     margin-bottom: 12px;
     border: 1px solid #777;
+    border-radius: 3px;
+    height: 40px;
   }
 
   &__text {
@@ -309,14 +317,18 @@ select {
   width: 100%;
 }
 
-@media screen and (min-width: 390px) {
-  .form {
-    &__btn {
-      font-size: 17px;
+@media (min-width: 768px) {
+.form {
+    display: inline-block;
+    column-count: 2;
+    padding-bottom: 2px;
+  &__btn {
+      font-size: 14.5px;
+      width: 100%;
     }
-    &__caption {
-      font-size: 17px;
-    }
+  }
+  .first label {
+    width: 100px;
   }
 }
 </style>
