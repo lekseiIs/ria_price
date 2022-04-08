@@ -5,14 +5,21 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    formState: {
+      body_id: '',
+      marka_id: '',
+      model_id: '',
+      yers: '',
+      raceInt: '',
+      state_id: '',
+      damage: '',
+      custom: '',
+      gear_id: '',
+      fuel_id: '',
+    },
     marks: [],
-    marka: '',
     models: [],
-    model: '',
     bodyStyles: [],
-    year: '',
-    raceFrom: '',
-    raceTo: '',
     regions: [],
     gearboxes: [],
     fuelTypes: [],
@@ -48,6 +55,9 @@ export default new Vuex.Store({
     getLoaded(state) {
       return state.isLoaded;
     },
+    getFormState(state) {
+      return state.formState;
+    },
   },
   mutations: {
     setMarks(state, payload) {
@@ -77,6 +87,9 @@ export default new Vuex.Store({
     setIsLoaded(state, payload) {
       Vue.set(state, 'isLoaded', payload);
     },
+    setFormState(state, payload) {
+      Vue.set(state, 'formState', payload);
+    },
   },
   actions: {
     fetchMarks(ctx) {
@@ -101,7 +114,7 @@ export default new Vuex.Store({
     },
     fetchModels(ctx, marka) {
       fetch(
-        `https://api.auto.ria.com/categories/1/marks/${marka}/models?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4`,
+        `${process.env.VUE_APP_API_URL}/get-models/${marka}`,
       )
         .then((data) => {
           const models = data.json();
@@ -195,7 +208,7 @@ export default new Vuex.Store({
       }
     },
     fetchResult(ctx, params) {
-      return fetch(process.env.VUE_APP_API_URL, { method: 'POST', body: params })
+      return fetch(`${process.env.VUE_APP_API_URL}/avg-price`, { method: 'POST', body: params })
         .then((data) => data.json())
         .then((result) => {
           ctx.commit('setResult', result);
@@ -207,6 +220,9 @@ export default new Vuex.Store({
     },
     setIsLoaded(ctx, status) {
       ctx.commit('setIsLoaded', status);
+    },
+    changeFormState(ctx, newState) {
+      ctx.commit('setFormState', newState);
     },
   },
 });
