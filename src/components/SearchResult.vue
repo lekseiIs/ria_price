@@ -126,17 +126,7 @@ export default {
       margin-top: 5%;
       align-items: center;
   }
-  .plus{
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 900;
-      font-size: 24px;
-      line-height: 42px;
-      display: flex;
-      align-items: center;
-      color: #FFFFFF;
-      font-weight: bold;
-  }
+
   .searchAuto{
       margin-top: 2%;
       background: #219BE7;

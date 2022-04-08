@@ -76,6 +76,17 @@ export default {
   //text-align: center;
   font-weight: bold;
 }
+// .plus{
+//       font-family: Roboto;
+//       font-style: normal;
+//       font-weight: 900;
+//       font-size: 24px;
+//       line-height: 42px;
+//      // display: flex;
+//       align-items: center;
+//       color: #FFFFFF;
+//       font-weight: bold;
+//   }
 .sell{
   font-size: 16px;
   color: #FFFFFF;

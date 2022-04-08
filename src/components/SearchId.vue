@@ -2,6 +2,7 @@
   <div class="search-id wrapper">
     <label for="search-id">
       <input
+        placeholder="Пошук по ID"
         name="search-id"
         id="search-id"
         type="number"
@@ -16,6 +17,7 @@
         <div class="search-start" v-if="!input">
           <p class="result-title">Введіть ID оголошення</p>
         </div>
+      <!-- eslint-disable-next-line -->
         <div class="search-success" v-else-if="success" @click="fillForm">
           <div class="result-img">
             <img :src="result.photo" :alt="result.markName" />
@@ -106,20 +108,29 @@ export default {
 
 <style scoped>
 .wrapper {
-  width: 300px;
-  margin: 20px;
-  position: relative;
-  border: 2px solid #DB5C4C;
+  width: 292px;
+  margin: 10px 0 14px 14px;
+  border: 1px solid #DB5C4C;
   border-radius: 3px;
-  /* border-bottom: none; */
+    /* border-bottom: none; */
 }
 input {
   width: 100%;
-  position: relative;
+  height: 40px;
   border: none;
 }
+label {
+  margin-left: 0;
+}
+input, input::placeholder{
+  color: rgba(219, 92, 76, 0.5);
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  font-style: normal;
+}
 .search-result {
-  width: 100%;
+  width: 292px;
   border: 1px solid #808080;
   position: absolute;
   background-color: #fff;
@@ -159,5 +170,11 @@ input {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
   opacity: 0;
+}
+
+@media (min-width: 768px) {
+  .wrapper{
+    margin-left: 25%;
+  }
 }
 </style>
