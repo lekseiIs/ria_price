@@ -21,19 +21,7 @@
         <!-- <div class="searchResultText">Зараз продається {{total}} авто</div> -->
       </div>
     </div>
-    <div class="button">
-    <button class="sellAuto">
-      <div class="sellAutoText">
-      <div class="plus">  +</div>
-      <div> Продати авто </div>
-      </div>
-    </button>
-     <button class="searchAuto">
-      <div class="searchAutoText">
-         <div> Пошук авто </div>
-      </div>
-    </button>
-    </div>
+
   </div>
 </template>
 <script>
@@ -54,12 +42,13 @@ export default {
   }
   .searchResult{
     width: 100%;
-    display: flex;
+  //  display: flex;
   }
   .searchPrice{
-    min-width: 344px;
-    margin: 0 auto;
-    padding: 13px 0;
+    width: 292px;
+    height: 107px;
+    margin: 14px auto;
+    //padding: 13px 0;
     border: 4px solid #F0F2F9;
     box-sizing: border-box;
   }
@@ -101,46 +90,5 @@ export default {
       text-align: center;
       margin: 7px;
     }
-    .sellAuto {
-      display: flex;
-      justify-content: center;
-      background: #89BC39;
-      border-radius: 3px;
-      width: 96%;
-      border: none;
-      }
-    .sellAutoText{
-      text-align: center;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 18px;
-      line-height: 21px;
-      display: flex;
-      align-items: center;
-      color: #FFFFFF;
-  }
-  .button{
 
-      margin-left: 3%;
-      margin-top: 5%;
-      align-items: center;
-  }
-
-  .searchAuto{
-      margin-top: 2%;
-      background: #219BE7;
-      border-radius: 3px;
-      display: flex;
-      justify-content: center;
-      border-radius: 3px;
-      width: 96%;
-      border: none;
-      color: #FFFFFF;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 18px;
-      line-height: 42px;
-  }
 </style>

@@ -321,6 +321,7 @@ select {
     display: inline-block;
     column-count: 2;
     padding-bottom: 2px;
+    border-radius: 0 0 0 12px;
   &__btn {
       font-size: 14.5px;
       width: 100%;

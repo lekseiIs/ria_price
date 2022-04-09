@@ -73,27 +73,15 @@ export default {
   font-size: 32px;
   line-height: 42px;
   color: #FFFFFF;
-  //text-align: center;
+  vertical-align: bottom;
   font-weight: bold;
 }
-// .plus{
-//       font-family: Roboto;
-//       font-style: normal;
-//       font-weight: 900;
-//       font-size: 24px;
-//       line-height: 42px;
-//      // display: flex;
-//       align-items: center;
-//       color: #FFFFFF;
-//       font-weight: bold;
-//   }
 .sell{
   font-size: 16px;
   color: #FFFFFF;
   font-weight: normal;
   vertical-align: bottom;
-  top:50%;
-}
+  }
 
 @media screen and (max-width: 425px) {
 
@@ -103,8 +91,6 @@ export default {
   .header{
     &__inner{
       justify-content: space-around;
-      //align-items: center;
-      //width: 70%;
       margin-left: 14px;
       margin-right: 14px;
     }
@@ -112,33 +98,6 @@ export default {
       font-size: 15px;
     }
   }
+}
 
-  // .logo img{
-  //   width: 207px;
-  //   height: 61px;
-  // }
-//   .btn {
-//   width: 186.85px;
-//   height: 51px;
-//  }
-}
-/*
-@media screen and  (min-width: 1400px) {
-  .container {
-    width: 848px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin: 0 auto;
-  }
-  .header{
-    margin-bottom: 30px;
-    &__message{
-      font-size: 22px;
-    }
-  }
-  .logo {
-    width: 272px;
-  }
-}
-*/
 </style>

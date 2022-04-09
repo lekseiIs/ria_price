@@ -135,10 +135,11 @@ export default {
 <style scoped>
 .wrapper {
   width: 292px;
-  margin: 10px 0 14px 14px;
+  margin: 0 auto 14px auto;
   border: 1px solid #db5c4c;
   border-radius: 3px;
   z-index: 999;
+
   /* border-bottom: none; */
 }
 input {
