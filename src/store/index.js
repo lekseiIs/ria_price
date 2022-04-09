@@ -109,15 +109,15 @@ export default new Vuex.Store({
         ctx.commit('setMarks', JSON.parse(localStorage.marks));
       } else {
         fetch(
-          'https://api.auto.ria.com/categories/1/marks?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4',
+          `${process.env.VUE_APP_API_URL}/get-marks`,
         )
           .then((data) => {
             const marks = data.json();
             return marks;
           })
           .then((marks) => {
-            localStorage.setItem('marks', JSON.stringify(marks));
-            ctx.commit('setMarks', marks);
+            localStorage.setItem('marks', JSON.stringify(marks.data));
+            ctx.commit('setMarks', marks.data);
           })
           .catch((error) => {
             console.log(error);
@@ -143,15 +143,15 @@ export default new Vuex.Store({
         ctx.commit('setBodyStyles', JSON.parse(localStorage.bodyStyles));
       } else {
         fetch(
-          'https://developers.ria.com/auto/categories/1/bodystyles?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4',
+          `${process.env.VUE_APP_API_URL}/get-body-type`,
         )
           .then((data) => {
             const bodyStyles = data.json();
             return bodyStyles;
           })
           .then((bodyStyles) => {
-            localStorage.setItem('bodyStyles', JSON.stringify(bodyStyles));
-            ctx.commit('setBodyStyles', bodyStyles);
+            localStorage.setItem('bodyStyles', JSON.stringify(bodyStyles.data));
+            ctx.commit('setBodyStyles', bodyStyles.data);
           })
           .catch((error) => {
             console.log(error);
@@ -163,15 +163,15 @@ export default new Vuex.Store({
         ctx.commit('setRegions', JSON.parse(localStorage.regions));
       } else {
         fetch(
-          'https://developers.ria.com/auto/states?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4',
+          `${process.env.VUE_APP_API_URL}/get-regions`,
         )
           .then((data) => {
             const regions = data.json();
             return regions;
           })
           .then((regions) => {
-            localStorage.setItem('regions', JSON.stringify(regions));
-            ctx.commit('setRegions', regions);
+            localStorage.setItem('regions', JSON.stringify(regions.data));
+            ctx.commit('setRegions', regions.data);
           })
           .catch((error) => {
             console.log(error);
@@ -183,15 +183,15 @@ export default new Vuex.Store({
         ctx.commit('setGearboxes', JSON.parse(localStorage.gearboxes));
       } else {
         fetch(
-          'https://developers.ria.com/auto/categories/1/gearboxes?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4',
+          `${process.env.VUE_APP_API_URL}/get-gearboxes`,
         )
           .then((data) => {
             const gearboxes = data.json();
             return gearboxes;
           })
           .then((gearboxes) => {
-            localStorage.setItem('gearboxes', JSON.stringify(gearboxes));
-            ctx.commit('setGearboxes', gearboxes);
+            localStorage.setItem('gearboxes', JSON.stringify(gearboxes.data));
+            ctx.commit('setGearboxes', gearboxes.data);
           })
           .catch((error) => {
             console.log(error);
@@ -203,15 +203,15 @@ export default new Vuex.Store({
         ctx.commit('setFuelTypes', JSON.parse(localStorage.fuelTypes));
       } else {
         fetch(
-          'https://developers.ria.com/auto/type?api_key=U7i4BeQMgsVW0z4r9OxQvHc4H7C1IecipE3kX5zu&langId=4',
+          `${process.env.VUE_APP_API_URL}/get-fuel-type`,
         )
           .then((data) => {
             const fuelTypes = data.json();
             return fuelTypes;
           })
           .then((fuelTypes) => {
-            localStorage.setItem('fuelTypes', JSON.stringify(fuelTypes));
-            ctx.commit('setFuelTypes', fuelTypes);
+            localStorage.setItem('fuelTypes', JSON.stringify(fuelTypes.data));
+            ctx.commit('setFuelTypes', fuelTypes.data);
           })
           .catch((error) => {
             console.log(error);
