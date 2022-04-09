@@ -1,4 +1,4 @@
-function addToLocalStorage(obj) {
+export default function addToLocalStorage(obj) {
   if (!localStorage.getItem('serchByID')) {
     localStorage.setItem('serchByID', JSON.stringify([obj]));
   } else {
@@ -12,6 +12,6 @@ function addToLocalStorage(obj) {
   }
 }
 
-export default {
-  addToLocalStorage,
-};
+// export default {
+//   addToLocalStorage,
+// };
