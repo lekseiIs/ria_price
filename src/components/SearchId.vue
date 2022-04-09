@@ -18,7 +18,12 @@
           <p class="result-title">Введіть ID оголошення</p>
           <HistoryElem />
         </div>
-      <div class="search-success" v-else-if="success" @click="fillForm" v-on:keyup.enter="fillForm">
+        <div
+          class="search-success"
+          v-else-if="success"
+          @click="fillForm"
+          v-on:keyup.enter="fillForm"
+        >
           <div class="result-img">
             <img :src="result.photo" :alt="result.markName" />
           </div>
@@ -39,7 +44,6 @@ import debounce from 'lodash.debounce';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
 import HistoryElem from '@/components/History/HistoryElem.vue';
 import { mapActions } from 'vuex';
-import addToLocalStorage from './History/locStor';
 
 export default {
   name: 'SearchId',
@@ -67,7 +71,7 @@ export default {
       await fetch(`${process.env.VUE_APP_API_URL}/ad/info?id=${input}`)
         .then((data) => data.json())
         .then((json) => {
-          addToLocalStorage(json.data);
+          this.addToLocalStorage(json.data);
           console.log(json.data);
           this.result = json.data;
           this.success = true;
@@ -87,6 +91,22 @@ export default {
     this.debouncedWatch.cancel();
   },
   methods: {
+    addToLocalStorage(result) {
+      if (!localStorage.getItem('serchByID')) {
+        localStorage.setItem('serchByID', JSON.stringify([result]));
+      } else {
+        const ls = localStorage.getItem('serchByID');
+        const parseDataFromLocalStorage = JSON.parse(ls);
+        parseDataFromLocalStorage.unshift(result);
+        if (parseDataFromLocalStorage.length >= 6) {
+          parseDataFromLocalStorage.pop();
+        }
+        localStorage.setItem(
+          'serchByID',
+          JSON.stringify(parseDataFromLocalStorage),
+        );
+      }
+    },
     openResult() {
       this.resultVisible = true;
     },
@@ -116,7 +136,7 @@ export default {
 .wrapper {
   width: 292px;
   margin: 10px 0 14px 14px;
-  border: 1px solid #DB5C4C;
+  border: 1px solid #db5c4c;
   border-radius: 3px;
   z-index: 999;
   /* border-bottom: none; */
@@ -129,7 +149,8 @@ input {
 label {
   margin-left: 0;
 }
-input, input::placeholder{
+input,
+input::placeholder {
   color: rgba(219, 92, 76, 0.5);
   text-align: center;
   font-weight: 500;
@@ -141,7 +162,7 @@ input, input::placeholder{
   border: 1px solid #808080;
   position: absolute;
   background-color: #fff;
-  border: 2px solid #DB5C4C;
+  border: 2px solid #db5c4c;
   z-index: 1;
 }
 .search-success:hover {
@@ -181,7 +202,7 @@ input, input::placeholder{
 }
 
 @media (min-width: 768px) {
-  .wrapper{
+  .wrapper {
     margin-left: 25%;
   }
 }

@@ -127,7 +127,6 @@ export default {
   },
   data() {
     return {
-      // marka: '',
       raceTo: '',
       addIsOpen: false,
     };
