@@ -101,7 +101,7 @@ export default new Vuex.Store({
   actions: {
     setToLocalStorage(ctx) {
       const ls = localStorage.getItem('serchByID');
-      const arr = [JSON.parse(ls)];
+      const arr = ls ? [...JSON.parse(ls)] : [];
       ctx.commit('setHistoryById', arr);
     },
     fetchMarks(ctx) {
