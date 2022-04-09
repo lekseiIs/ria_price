@@ -64,7 +64,7 @@ export default {
       this.spinner = true;
       this.nothing = false;
       this.success = false;
-      await fetch(`http://localhost:3000/ad/info?id=${input}`)
+      await fetch(`${process.env.VUE_APP_API_URL}/ad/info?id=${input}`)
         .then((data) => data.json())
         .then((json) => {
           addToLocalStorage(json.data);
