@@ -99,10 +99,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    // eslint-disable-next-line
-        setToLocalStorage(ctx) {
+    setToLocalStorage(ctx) {
       const ls = localStorage.getItem('serchByID');
-      const arr = [...JSON.parse(ls)];
+      const arr = [JSON.parse(ls)];
       ctx.commit('setHistoryById', arr);
     },
     fetchMarks(ctx) {
@@ -127,9 +126,7 @@ export default new Vuex.Store({
     },
 
     fetchModels(ctx, marka) {
-      fetch(
-        `${process.env.VUE_APP_API_URL}/get-models/${marka}`,
-      )
+      fetch(`${process.env.VUE_APP_API_URL}/get-models/${marka}`)
         .then((data) => {
           const models = data.json();
           return models;
@@ -227,7 +224,8 @@ export default new Vuex.Store({
         .then((result) => {
           ctx.commit('setResult', result);
           return result;
-        }).catch((e) => console.log(e));
+        })
+        .catch((e) => console.log(e));
     },
     setIsFetched(ctx, status) {
       ctx.commit('setIsFetched', status);
