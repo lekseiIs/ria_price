@@ -142,6 +142,7 @@ input, input::placeholder{
   position: absolute;
   background-color: #fff;
   border: 2px solid #DB5C4C;
+  z-index: 1;
 }
 .search-success:hover {
   background-color: #d6d6d6;
