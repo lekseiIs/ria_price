@@ -43,7 +43,7 @@ export default {
     display: flex;
     justify-content: center;
     margin-top: 14px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     color: #777;
     font-family: "Roboto";
     font-style: normal;

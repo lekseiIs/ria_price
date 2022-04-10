@@ -42,6 +42,7 @@ export default {
   .searchPrice{
     width: 292px;
     margin: 14px auto;
+    padding: 10px;
     border: 4px solid #F0F2F9;
     box-sizing: border-box;
   }
