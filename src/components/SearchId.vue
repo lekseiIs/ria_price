@@ -69,7 +69,7 @@ export default {
       this.spinner = true;
       this.nothing = false;
       this.success = false;
-      await fetch(`${process.env.VUE_APP_API_URL}/ad/info?id=${input}`)
+      await fetch(`http://localhost:3000/ad/info?id=${input}`)
         .then((data) => data.json())
         .then((json) => {
           if (json.message === 'ok') {
@@ -99,10 +99,23 @@ export default {
       } else {
         const ls = localStorage.getItem('serchByID');
         const parseDataFromLocalStorage = JSON.parse(ls);
-        parseDataFromLocalStorage.unshift(result);
-        if (parseDataFromLocalStorage.length >= 6) {
-          parseDataFromLocalStorage.pop();
+
+        let checksIdInLocalStorage = true;
+        /* eslint-disable-next-line */
+        for (const el of parseDataFromLocalStorage) {
+          if (el.autoId === result.autoId) {
+            checksIdInLocalStorage = false;
+            return;
+          }
         }
+
+        if (checksIdInLocalStorage) {
+          parseDataFromLocalStorage.unshift(result);
+          if (parseDataFromLocalStorage.length >= 6) {
+            parseDataFromLocalStorage.pop();
+          }
+        }
+
         localStorage.setItem(
           'serchByID',
           JSON.stringify(parseDataFromLocalStorage),
