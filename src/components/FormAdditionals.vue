@@ -8,6 +8,7 @@
           v-model="getFormState.state_id"
         >
           <option disabled value="" selected>Регіон</option>
+          <option value="" >Вся Україна</option>
           <option
             v-for="region in getRegions"
             :key="region.value"
