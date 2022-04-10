@@ -161,7 +161,7 @@ export default {
       this.fetchModels(this.getFormState.marka_id);
     },
     submitForm() {
-      console.log(process.env.VUE_APP_API_URL);
+      // console.log(process.env.VUE_APP_API_URL);
       const params = new FormData(this.$refs.formParams);
       this.fetchResult(params)
         .then(() => {
