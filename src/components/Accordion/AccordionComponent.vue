@@ -1,6 +1,6 @@
 <template>
     <div class="accordion">
-        <h3 class="accordion_titlee">Ключові фактори, які впливають на ціну вживаного авто</h3>
+        <h3 class="accordion_titlee">Ключові фактори, які впливають на ціну вживаного авто:</h3>
         <AccordionEl>
             <AccordionItem v-for="el in this.data" :key="el[0]">
                 <template slot="accordion-trigger">
@@ -50,11 +50,13 @@ export default {
     font-weight: 600;
     font-size: 17px;
     line-height: 18px;
+    padding: 0 14px;
 }
 .accordion {
     margin: 14px 0;
 }
 .accordion_title {
+    line-height: 22px;
     font-size: 15px;
     margin: 0;
     color: #777;

@@ -18,7 +18,7 @@
       @after-leave="end">
       <div class="accordion__content"
         v-show="visible">
-        <ul>
+        <ul class="accordion_list">
           <slot name="accordion-content"></slot>
         </ul>
       </div>
@@ -62,6 +62,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.accordion_list {
+    padding: 5px;
+}
 .cross {
     font-size: 20px;
     color: #777;
@@ -74,7 +77,7 @@ export default {
 
 .accordion__item {
   cursor: pointer;
-  padding: 10px 14px;
+  padding: 5px 14px;
   position: relative;
 }
 
