@@ -46,7 +46,7 @@ export default {
   }
   .searchPrice{
     width: 292px;
-    height: 107px;
+    //height: 107px;
     margin: 14px auto;
     //padding: 13px 0;
     border: 4px solid #F0F2F9;
