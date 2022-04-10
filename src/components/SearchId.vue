@@ -71,10 +71,12 @@ export default {
       await fetch(`${process.env.VUE_APP_API_URL}/ad/info?id=${input}`)
         .then((data) => data.json())
         .then((json) => {
-          this.addToLocalStorage(json.data);
+          if (json.message === 'ok') {
+            this.addToLocalStorage(json.data);
+            this.result = json.data;
+            this.success = true;
+          }
           console.log(json.data);
-          this.result = json.data;
-          this.success = true;
         })
         .catch((error) => {
           console.log(error);
