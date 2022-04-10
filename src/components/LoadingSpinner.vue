@@ -1,8 +1,12 @@
 <template>
-  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  <div class="center"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
 </template>
 
 <style scoped>
+  .center {
+    display: flex;
+    justify-content: center;
+  }
   .lds-ring {
     display: inline-block;
     position: relative;

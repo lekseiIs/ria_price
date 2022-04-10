@@ -60,6 +60,11 @@ export default {
     font-weight: 600;
   }
 }
+a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
 .avgPrice {
   margin-top: 0;
   margin-bottom: 14px;
@@ -83,6 +88,7 @@ export default {
   background-color: #89BC39;
   border-radius: 3px;
   padding: 0%;
+  text-decoration: none;
 }
 .plus{
   font-size: 32px;
@@ -112,10 +118,6 @@ export default {
     &__message{
       font-size: 15px;
     }
-  }
-  a {
-    text-decoration: none;
-    color: #FFFFFF;
   }
 }
 
