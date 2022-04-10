@@ -5,16 +5,21 @@
         <div class="header__inner">
           <div class="header__top">
             <div class="logo">
+              <a href="https://auto.ria.com" target="_blank">
                 <img  src="../assets/logo2.svg" alt="logo">
+              </a>
             </div>
-            <button class="btn" href="#">
+            <button class="btn">
+              <a href="https://auto.ria.com/uk/add_auto.html" target="_blank" rel="nofollow">
               <span class="plus">+ <span class="sell"> Продати авто</span></span>
+              </a>
             </button>
           </div>
           <div class="header__bottom">
              <div class="header__message">
                Слава Україні! Окупанти – геть!
-          </div>
+            </div>
+            <p class="avgPrice">Розрахуйте середню вартість авто</p>
           </div>
 
         </div>
@@ -46,6 +51,24 @@ export default {
   &__bottom{
     align-content: center;
   }
+    &__message {
+    color: #4979AA;
+    font-size: 15px;
+    user-select: none;
+    width: 100%;
+    padding: 11px 0px 14px 0px;
+    font-weight: 600;
+  }
+}
+.avgPrice {
+  margin-top: 0;
+  margin-bottom: 14px;
+  color: rgba(0, 0, 0, 0.65);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
 }
 .logo{
   height: 41px;
@@ -53,14 +76,6 @@ export default {
 .logo img{
   width: 139px;
   height: 41px;
-}
-.header__message {
-  color: #4979AA;
-  font-size: 15px;
-  user-select: none;
-  width: 100%;
-  padding: 11px 0px 10px 0px;
-  font-weight: 600;
 }
 .btn {
   width: 139px;
@@ -97,6 +112,10 @@ export default {
     &__message{
       font-size: 15px;
     }
+  }
+  a {
+    text-decoration: none;
+    color: #FFFFFF;
   }
 }
 

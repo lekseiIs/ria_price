@@ -1,4 +1,5 @@
 <template>
+
   <div class="search-id wrapper">
     <label for="search-id">
       <input
@@ -76,7 +77,6 @@ export default {
             this.result = json.data;
             this.success = true;
           }
-          // console.log(json.data);
         })
         .catch((error) => {
           console.log(error);
@@ -141,8 +141,6 @@ export default {
   border: 1px solid #db5c4c;
   border-radius: 3px;
   z-index: 999;
-
-  /* border-bottom: none; */
 }
 input {
   width: 100%;
@@ -190,8 +188,6 @@ input::placeholder {
 }
 .result-img {
   width: 60px;
-  /* max-height: 30px; */
-  /* background-color: pink; */
 }
 .result-img img {
   width: 100%;

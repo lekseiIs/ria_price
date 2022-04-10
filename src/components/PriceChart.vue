@@ -1,17 +1,22 @@
 <template>
   <div>
+    <p class="dinamicPrice">Динаміка зміни вартості авто</p>
     <canvas id="price-chart"></canvas>
      <div class="button">
       <button class="sellAuto">
-        <div class="sellAutoText">
-        <div class="plus">  +</div>
-        <div> Продати авто </div>
+        <a href="https://auto.ria.com/uk/add_auto.html" target="_blank" rel="nofollow">
+          <div class="sellAutoText">
+          <div class="plus">  +</div>
+          <div> Продати авто </div>
         </div>
+        </a>
       </button>
       <button class="searchAuto">
-        <div class="searchAutoText">
-          <div> Пошук авто </div>
-        </div>
+       <a href="https://auto.ria.com" target="_blank" rel="nofollow">
+          <div class="searchAutoText">
+            <div> Пошук авто </div>
+          </div>
+        </a>
       </button>
     </div>
   </div>
@@ -42,28 +47,32 @@ export default {
 </script>
 <style lang="scss">
 .button{
-     // width: 292px;
-     // height: 40px;
-      margin-left: auto;
-      margin-top: 14px;
-      align-items: center;
-      display: flex;
-      flex-direction: column;
+    margin-left: auto;
+    margin-top: 14px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+    .dinamicPrice {
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(0, 0, 0, 0.65);
+    margin-bottom: 14px;
+    margin-top: 14px;
   }
   .button button{
     width: 292px;
     height: 40px;
     align-items: center;
   }
-
   .searchAuto{
       margin-top: 2%;
       background: #219BE7;
       border-radius: 3px;
-      //display: flex;
-      justify-content: center;
-      border-radius: 3px;
-    //  width: 96%;
       border: none;
       color: #FFFFFF;
       font-family: Roboto;
@@ -71,7 +80,7 @@ export default {
       font-weight: 700;
       font-size: 16px;
       line-height: 40px;
-  }
+    }
    .sellAuto {
       display: flex;
       justify-content: center;
@@ -94,5 +103,9 @@ export default {
         font-size: 32px;
         font-weight: 900;
       }
+  }
+  a {
+    text-decoration: none;
+    color: #FFFFFF;
   }
 </style>
