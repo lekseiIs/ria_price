@@ -71,18 +71,20 @@ export default {
       await fetch(`${process.env.VUE_APP_API_URL}/ad/info?id=${input}`)
         .then((data) => data.json())
         .then((json) => {
-          this.addToLocalStorage(json.data);
-          console.log(json.data);
-          this.result = json.data;
-          this.success = true;
+          if (json.message === 'ok') {
+            this.addToLocalStorage(json.data);
+            this.result = json.data;
+            this.success = true;
+          }
+          // console.log(json.data);
         })
         .catch((error) => {
           console.log(error);
           this.success = false;
           this.result = {};
-          this.nothing = true;
         })
         .finally(() => {
+          this.nothing = true;
           this.spinner = false;
         });
     }, 1000);
@@ -117,7 +119,7 @@ export default {
       return newVal;
     },
     fillForm() {
-      console.log(this.result);
+      // console.log(this.result);
       this.changeFormState(this.result);
     },
     ...mapActions({

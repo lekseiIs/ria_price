@@ -84,7 +84,8 @@
           name="raceInt"
           class="form__caption form__text"
           min="5"
-          :max="getFormState.raceInt"
+          :max="getFormState.raceTo"
+          v-model="getFormState.raceFrom"
           type="number"
           placeholder="Пробіг від"
           value="5"
@@ -93,7 +94,7 @@
         <input
           name="raceInt"
           class="form__caption form__text"
-          v-model="getFormState.raceInt"
+          v-model="getFormState.raceTo"
           max="1000"
           type="number"
           placeholder="Пробіг до"
@@ -161,7 +162,7 @@ export default {
       this.fetchModels(this.getFormState.marka_id);
     },
     submitForm() {
-      console.log(process.env.VUE_APP_API_URL);
+      // console.log(process.env.VUE_APP_API_URL);
       const params = new FormData(this.$refs.formParams);
       this.fetchResult(params)
         .then(() => {
