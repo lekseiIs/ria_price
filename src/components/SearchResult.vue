@@ -2,7 +2,6 @@
   <div>
     <div class="searchResult">
       <div class="searchPrice">
-        <!-- <div class="price">{{avg ? avg.toFixed() + '$' : 'Результату не знайдено'}}</div> -->
         <div>
           <div v-if=avg class="price">{{avg.toFixed() + '$'}}
             <hr class="new4">
@@ -16,9 +15,6 @@
             <div class="bg_arrow"></div>
           </div>
         </div>
-
-         <!-- <hr class="new4"> -->
-        <!-- <div class="searchResultText">Зараз продається {{total}} авто</div> -->
       </div>
     </div>
 
@@ -42,13 +38,10 @@ export default {
   }
   .searchResult{
     width: 100%;
-  //  display: flex;
   }
   .searchPrice{
     width: 292px;
-    height: 107px;
     margin: 14px auto;
-    //padding: 13px 0;
     border: 4px solid #F0F2F9;
     box-sizing: border-box;
   }
@@ -84,7 +77,7 @@ export default {
       font-family: Roboto;
       font-style: normal;
       font-weight: 600;
-      font-size: 20px;
+      font-size: 19px;
       line-height: 23px;
       color: #99A1AC;
       text-align: center;

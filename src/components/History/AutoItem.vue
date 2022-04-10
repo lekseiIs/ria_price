@@ -1,6 +1,6 @@
 <template>
 <a class="item_auto" @click="fillForm" v-on:keyup.enter="fillForm">
-    <img :src="link" alt="" width="100px">
+    <img :src="link" alt="" width="60px">
     <div>
         <span>{{dataAuto.markName}} </span>
         <span>{{dataAuto.modelName}}</span>

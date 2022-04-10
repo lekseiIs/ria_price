@@ -15,6 +15,7 @@
         :labels="getAvgResult.dbRequest.labels"
         :nums="getAvgResult.dbRequest.nums"
       />
+      <AccordionComponent />
     </main>
     <MainFooter />
   </body>
@@ -25,11 +26,13 @@ import SearchForm from '@/components/SearchForm.vue';
 import MainHeader from '@/components/MainHeader.vue';
 import MainFooter from '@/components/MainFooter.vue';
 import SearchById from '@/components/SearchId.vue';
+import AccordionComponent from '@/components/Accordion/AccordionComponent.vue';
 import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
   components: {
+    AccordionComponent,
     MainHeader,
     SearchForm,
     MainFooter,
