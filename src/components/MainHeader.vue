@@ -6,7 +6,7 @@
           <div class="header__top">
             <div class="logo">
               <a href="https://auto.ria.com" target="_blank">
-                <img  src="../assets/logo2.svg" alt="logo">
+                <img  :src="LogoImage" alt="logo">
               </a>
             </div>
             <button class="btn">
@@ -31,8 +31,15 @@
 </template>
 
 <script>
+import LogoImage from '../assets/logo2.svg';
+
 export default {
   name: 'MainHeader',
+  data() {
+    return {
+      LogoImage,
+    };
+  },
 };
 </script>
 
