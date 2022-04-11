@@ -87,7 +87,7 @@
           :max="getFormState.raceTo"
           v-model="getFormState.raceFrom"
           type="number"
-          placeholder="Пробіг від"
+          placeholder="Пробіг від, тис. км."
           value="5"
           required
         />
@@ -97,7 +97,7 @@
           v-model="getFormState.raceTo"
           max="1000"
           type="number"
-          placeholder="Пробіг до"
+          placeholder="Пробіг до, тис. км."
           required
         />
       </label>
